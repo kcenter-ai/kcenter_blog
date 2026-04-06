@@ -102,5 +102,5 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/poppet/poppet.github.io.git
-  branch: master
+  repo: https://github.com/anyshare-aishu/anyshare_blog.git
+  branch: gh-pages

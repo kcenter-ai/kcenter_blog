@@ -1,0 +1,6 @@
+# Fluid 主题覆盖配置
+# 文档: https://hexo.fluid-dev.com/docs/guide/
+
+# 自定义 CSS
+custom_css:
+  head_end: '<style>.main-content { max-width: 100% !important; } .article-content table { font-size: 14px; } .article-content table td, .article-content table th { padding: 10px 12px; }</style>'
