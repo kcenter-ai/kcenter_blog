@@ -7,6 +7,7 @@ tags:
   - Anyshare
   - Dify
   - AI
+description: Anyshare Dify 插件是一款用于从 Anyshare 文档库中召回文档切片的工具插件，支持在工作流中灵活配置召回参数。
 ---
 
 # Anyshare Dify 插件使用指南
