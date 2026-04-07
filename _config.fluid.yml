@@ -3,4 +3,4 @@
 
 # 自定义 CSS
 custom_css:
-  head_end: '<style>.main-content { max-width: 100% !important; } .article-content table { font-size: 14px; } .article-content table td, .article-content table th { padding: 10px 12px; }</style>'
+  head_end: '<style>.main-content { max-width: 100% !important; } .article-content table { font-size: 14px; } .article-content table td, .article-content table th { padding: 10px 12px; } .tocbot-list .tocbot-list { display: block !important; } .toc-toggle::before { content: "▼"; } .toc-toggle-placeholder::before { content: "▶"; }</style>'
