@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://kcenter-ai.github.io/KCenter_blog
+url: https://kcenter-ai.github.io/kcenter_blog
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -23,7 +23,7 @@ pretty_urls:
 # Directory
 source_dir: source
 public_dir: public
-root: /KCenter_blog/
+root: /kcenter_blog/
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -103,5 +103,5 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/kcenter-ai/KCenter_blog.git
+  repo: https://github.com/kcenter-ai/kcenter_blog.git
   branch: gh-pages
