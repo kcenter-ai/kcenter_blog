@@ -1,6 +1,13 @@
 # Fluid 主题覆盖配置
 # 文档: https://hexo.fluid-dev.com/docs/guide/
 
+# Mermaid 图表支持
+mermaid:
+  enable: true
+  version: '9.1.7'
+  options:
+    theme: 'default'
+
 # 自定义 CSS
 custom_css:
   head_end: '<style>.main-content { max-width: 100% !important; } .article-content table { font-size: 14px; } .article-content table td, .article-content table th { padding: 10px 12px; } .tocbot-list .tocbot-list { display: block !important; } .toc-toggle::before { content: "▼"; } .toc-toggle-placeholder::before { content: "▶"; }</style>'
