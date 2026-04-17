@@ -2,7 +2,7 @@
 title: Anyshare Dify 插件使用指南
 date: 2026-04-07
 categories:
-  - 技术文档
+  - 智能知识库
 tags:
   - Anyshare
   - Dify

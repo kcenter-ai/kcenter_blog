@@ -2,7 +2,7 @@
 title: AnyShare 7.0.6.7 实施部署手册
 date: 2026-03-10
 categories:
-  - 技术文档
+  - 实施部署
 tags:
   - AnyShare
   - 部署

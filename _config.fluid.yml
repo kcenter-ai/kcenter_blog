@@ -1,6 +1,15 @@
 # Fluid 主题覆盖配置
 # 文档: https://hexo.fluid-dev.com/docs/guide/
 
+# 导航菜单
+menu:
+  - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
+  - { key: "category", name: "产品文档", link: "/categories/产品文档/", icon: "iconfont icon-category-fill" }
+  - { key: "智能知识库", name: "智能知识库", link: "/categories/智能知识库/", icon: "iconfont icon-book-fill" }
+  - { key: "实施部署", name: "实施部署", link: "/categories/实施部署/", icon: "iconfont icon-tool-fill" }
+  - { key: "开放集成", name: "开放集成", link: "/categories/开放集成/", icon: "iconfont icon-paper-fill" }
+  - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+
 # Mermaid 图表支持
 mermaid:
   enable: true

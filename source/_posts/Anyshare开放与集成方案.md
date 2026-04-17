@@ -2,7 +2,7 @@
 title: Anyshare 开放与集成方案
 date: 2026-04-06 22:57:00
 categories:
-  - 技术文档
+  - 开放集成
 tags:
   - Anyshare
   - API
