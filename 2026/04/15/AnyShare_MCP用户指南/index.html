@@ -1,0 +1,1146 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/kcenter_blog/img/fluid.png">
+  <link rel="icon" href="/kcenter_blog/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="AnyShare Team">
+  <meta name="keywords" content="KCenter, 文档管理, 技术博客">
+  
+    <meta name="description" content="AnyShare MCP 集成开发使用文档，面向需要把 asmcp 集成到 Agent、网关或业务系统中的开发者，提供最小可用接入步骤与联调建议。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AnyShare MCP 集成开发使用指南">
+<meta property="og:url" content="https://kcenter-ai.github.io/kcenter_blog/2026/04/15/AnyShare_MCP%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="KCenter 技术博客">
+<meta property="og:description" content="AnyShare MCP 集成开发使用文档，面向需要把 asmcp 集成到 Agent、网关或业务系统中的开发者，提供最小可用接入步骤与联调建议。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/mcp/image.png">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/mcp/cursor-mcp-json-streamablehttp-config.png">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/mcp/cursor-chat-confirm-available-mcp-tools.png">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/mcp/cursor-chat-generate-mcp-handbook.png">
+<meta property="article:published_time" content="2026-04-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-21T06:44:10.220Z">
+<meta property="article:author" content="AnyShare Team">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="AnyShare">
+<meta property="article:tag" content="MCP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/mcp/image.png">
+  
+  
+  
+  <title>AnyShare MCP 集成开发使用指南 - KCenter 技术博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/kcenter_blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/kcenter_blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/kcenter_blog/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" head_end="&lt;style&gt;.main-content { max-width: 100% !important; } .article-content table { font-size: 14px; } .article-content table td, .article-content table th { padding: 10px 12px; } .tocbot-list .tocbot-list { display: block !important; } .toc-toggle::before { content: &quot;▼&quot;; } .toc-toggle-placeholder::before { content: &quot;▶&quot;; }&lt;&#x2F;style&gt;" href="/kcenter_blog/.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kcenter-ai.github.io","root":"/kcenter_blog/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/kcenter_blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/kcenter_blog/js/utils.js" ></script>
+  <script  src="/kcenter_blog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/kcenter_blog/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/kcenter_blog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AnyShare MCP 集成开发使用指南"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-04-15 00:00" pubdate>
+          2026年4月15日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          57 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AnyShare MCP 集成开发使用指南</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="AnyShare-MCP集成开发使用文档"><a href="#AnyShare-MCP集成开发使用文档" class="headerlink" title="AnyShare MCP集成开发使用文档"></a>AnyShare MCP集成开发使用文档</h1><blockquote>
+<p>目标：帮助第一次接触 MCP 的同学快速上手。<br>数据来源：本机 MCP 工具描述 + 我在当前环境做的真实调用结果（2026-04-16）。</p>
+</blockquote>
+<hr>
+<h2 id="1-Cursor-配置-MCP（先做）"><a href="#1-Cursor-配置-MCP（先做）" class="headerlink" title="1. Cursor 配置 MCP（先做）"></a>1. Cursor 配置 MCP（先做）</h2><p>先在 Cursor 里把 MCP 服务连上，再开始调用工具。推荐直接在 <code>mcp.json</code> 配置远程 <code>streamableHttp</code>：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;asmcp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;streamableHttp&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;url&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://anyshare.aishu.cn/asmcp&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;headers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;Authorization&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&lt;token&gt;&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>参数说明（小白版）：</p>
+<ul>
+<li><code>mcpServers</code>：所有 MCP 服务的集合；</li>
+<li><code>asmcp</code>：服务名称，可自定义（建议保持 <code>asmcp</code> 方便识别）；</li>
+<li><code>type</code>：连接类型，远程服务使用 <code>streamableHttp</code>；</li>
+<li><code>url</code>：AnyShare MCP 服务地址；</li>
+<li><code>headers.Authorization</code>：鉴权头Bearer Token。</li>
+</ul>
+<p>操作建议：</p>
+<ol>
+<li>初次配置先填一个可用 token，确保服务能连通；</li>
+<li>token 过期后只需要更新 <code>headers.Authorization</code>；</li>
+<li>如果接入方具备自动鉴权能力，可交由系统自动刷新 token。</li>
+</ol>
+<hr>
+<h2 id="2-在-Cursor-中实际怎么用（看图操作）"><a href="#2-在-Cursor-中实际怎么用（看图操作）" class="headerlink" title="2. 在 Cursor 中实际怎么用（看图操作）"></a>2. 在 Cursor 中实际怎么用（看图操作）</h2><h3 id="步骤-1：打开-MCP-服务入口"><a href="#步骤-1：打开-MCP-服务入口" class="headerlink" title="步骤 1：打开 MCP 服务入口"></a>步骤 1：打开 MCP 服务入口</h3><p>进入 Cursor 的 <code>Settings &gt; Tools &amp; MCPs</code>，点击 <code>New MCP Server</code>（或 <code>Add a Custom MCP Server</code>）来新建一个 MCP 服务。</p>
+<p><img src="/kcenter_blog/assets/mcp/image.png" srcset="/kcenter_blog/img/loading.gif" lazyload alt="New MCP Server 入口"></p>
+<h3 id="步骤-2：填写-mcp-json-配置"><a href="#步骤-2：填写-mcp-json-配置" class="headerlink" title="步骤 2：填写 mcp.json 配置"></a>步骤 2：填写 <code>mcp.json</code> 配置</h3><p>在新建流程里打开&#x2F;填写 <code>mcp.json</code>，按下图方式配置远程 <code>streamableHttp</code>（<code>type</code>、<code>url</code>、<code>headers.Authorization</code>，即 <code>&lt;token&gt;</code>）。配置保存后，该 MCP 服务会出现在 <code>Tools &amp; MCPs</code> 列表里。</p>
+<p><img src="/kcenter_blog/assets/mcp/cursor-mcp-json-streamablehttp-config.png" srcset="/kcenter_blog/img/loading.gif" lazyload alt="mcp.json 远程 streamableHttp 示例"></p>
+<h3 id="步骤-3：在对话里先确认可用工具"><a href="#步骤-3：在对话里先确认可用工具" class="headerlink" title="步骤 3：在对话里先确认可用工具"></a>步骤 3：在对话里先确认可用工具</h3><p>建议先让 Agent 列出当前可用 MCP 工具，确认服务连接成功、工具可见，再进入具体业务调用。</p>
+<p><img src="/kcenter_blog/assets/mcp/cursor-chat-confirm-available-mcp-tools.png" srcset="/kcenter_blog/img/loading.gif" lazyload alt="确认可用 MCP 工具"></p>
+<h3 id="步骤-4：开始业务调用并产出文档"><a href="#步骤-4：开始业务调用并产出文档" class="headerlink" title="步骤 4：开始业务调用并产出文档"></a>步骤 4：开始业务调用并产出文档</h3><p>连接成功后，可直接在对话中调用认证、文档库、检索等工具，这里我让它一个个调用了mcp服务支持的工具并生成了这个使用手册的草稿。</p>
+<p><img src="/kcenter_blog/assets/mcp/cursor-chat-generate-mcp-handbook.png" srcset="/kcenter_blog/img/loading.gif" lazyload alt="在对话中调用 MCP 并生成手册"></p>
+<h2 id="3-简单尝试（3-分钟上手）"><a href="#3-简单尝试（3-分钟上手）" class="headerlink" title="3. 简单尝试（3 分钟上手）"></a>3. 简单尝试（3 分钟上手）</h2><ol>
+<li>先拿 token（推荐 <code>auth_access_token_by_account</code>）。</li>
+<li>再用文档库工具确认你看得到哪些库（<code>doc_lib_owned</code> &#x2F; <code>doc_lib_list</code>）。</li>
+<li>再做文件检索（<code>file_search</code> &#x2F; <code>intelli_all_search</code> &#x2F; <code>kc_search_wiki_docs</code>）。</li>
+<li>需要分享链接时用 <code>file_share_path</code>（会自动补建实名链接）。</li>
+</ol>
+<hr>
+<h2 id="4-认证与令牌（最重要）"><a href="#4-认证与令牌（最重要）" class="headerlink" title="4. 认证与令牌（最重要）"></a>4. 认证与令牌（最重要）</h2><h2 id="推荐流程-A（最简单）"><a href="#推荐流程-A（最简单）" class="headerlink" title="推荐流程 A（最简单）"></a>推荐流程 A（最简单）</h2><ul>
+<li>工具：<code>auth_access_token_by_account</code></li>
+<li>用途：用应用 <code>client_id/client_secret</code> + 用户账号，直接拿用户 token</li>
+</ul>
+<p>真实输入：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;account&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;z1&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;client_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;72deafac-a70b-453d-9bbc-1215c323c009&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;client_secret&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;111111&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>真实输出（已脱敏）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;access_token&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;ory_at_***&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;expires_in&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3600</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;scope&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;all&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;token_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;bearer&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="推荐流程-B（OAuth2-标准链路）"><a href="#推荐流程-B（OAuth2-标准链路）" class="headerlink" title="推荐流程 B（OAuth2 标准链路）"></a>推荐流程 B（OAuth2 标准链路）</h2><ol>
+<li><code>auth_oauth2_app_token</code>：拿应用 token（成功）</li>
+<li><code>auth_oauth2_user_assertion</code>：拿用户 assertion（成功）</li>
+<li><code>auth_oauth2_user_token</code>：assertion 换用户 token（用真实 assertion 会成功；我用假 assertion 实测报 400）</li>
+</ol>
+<p><code>auth_get_user_token</code> 是以上 3 步的一站式封装，实测成功。</p>
+<hr>
+<h2 id="5-各工具清单（按模块）"><a href="#5-各工具清单（按模块）" class="headerlink" title="5. 各工具清单（按模块）"></a>5. 各工具清单（按模块）</h2><p>说明：</p>
+<ul>
+<li><code>已实测</code>：我在当前环境跑过；</li>
+<li><code>成功/失败</code>：失败不代表工具坏，很多是“参数刻意造错”或“服务端未开放”；</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>工具</th>
+<th>作用</th>
+<th>实测结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>认证</td>
+<td><code>auth_access_token_by_account</code></td>
+<td>账号直取用户 token</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>认证</td>
+<td><code>auth_oauth2_app_token</code></td>
+<td>取应用 token</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>认证</td>
+<td><code>auth_oauth2_user_assertion</code></td>
+<td>取用户 assertion</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>认证</td>
+<td><code>auth_oauth2_user_token</code></td>
+<td>assertion 换用户 token</td>
+<td>失败（故意传假 assertion）</td>
+</tr>
+<tr>
+<td>认证</td>
+<td><code>auth_get_user_token</code></td>
+<td>一站式拿用户 token</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>认证</td>
+<td><code>auth_pwd_login</code></td>
+<td>账号密码登录（需 RSA 密文密码）</td>
+<td>失败（明文密码会报参数不合法）</td>
+</tr>
+<tr>
+<td>文档库</td>
+<td><code>doc_lib_owned</code></td>
+<td>我管理的文档库列表</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>文档库</td>
+<td><code>doc_lib_list</code></td>
+<td>可见文档库列表</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>文档库</td>
+<td><code>doc_lib_user_quota</code></td>
+<td>用户配额</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>文档库</td>
+<td><code>doc_lib_quota</code></td>
+<td>指定文档库配额</td>
+<td>失败（传参格式不合法）</td>
+</tr>
+<tr>
+<td>目录&#x2F;文件</td>
+<td><code>folder_sub_objects</code></td>
+<td>分页列举子目录文件</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>目录&#x2F;文件</td>
+<td><code>file_convert_path</code></td>
+<td>gns 转 namepath</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>目录&#x2F;文件</td>
+<td><code>dir_create</code></td>
+<td>创建目录</td>
+<td>失败（故意传不存在父目录）</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td><code>file_search</code></td>
+<td>文件全文&#x2F;属性检索</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td><code>intelli_all_search</code></td>
+<td>智能一体化搜索</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td><code>kc_search_wiki_docs</code></td>
+<td>wiki 搜索</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td><code>search_both</code></td>
+<td>同时跑 wiki + all_search</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td><code>retrieval</code></td>
+<td>切片召回</td>
+<td>成功（返回空列表）</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td><code>ecosearch_slice_search</code></td>
+<td>ECOSearch 切片召回</td>
+<td>成功（返回空）</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td><code>slicefetch</code></td>
+<td>拉取切片上下文</td>
+<td>成功（空结果）</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td><code>rerank_hybrid</code></td>
+<td>对候选记录重排</td>
+<td>成功（无命中）</td>
+</tr>
+<tr>
+<td>分享</td>
+<td><code>file_sharedlink_realname</code></td>
+<td>查询已有实名链接</td>
+<td>失败（无记录时提示空数组）</td>
+</tr>
+<tr>
+<td>分享</td>
+<td><code>file_sharedlink_realname_create</code></td>
+<td>创建实名链接</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>分享</td>
+<td><code>sharedlink_parse</code></td>
+<td>解析 shared link</td>
+<td>失败（故意传无效 link_id）</td>
+</tr>
+<tr>
+<td>分享</td>
+<td><code>file_share_path</code></td>
+<td>生成“链接+文件名+路径”展示信息</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>对话</td>
+<td><code>chat_send</code></td>
+<td>向 Bot 发问</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>对话</td>
+<td><code>smart_assistant</code></td>
+<td>智能助手封装问答</td>
+<td>成功（本次返回空答案）</td>
+</tr>
+<tr>
+<td>上传下载</td>
+<td><code>file_osbeginupload</code></td>
+<td>初始化上传，拿 PUT URL</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>上传下载</td>
+<td><code>file_osendupload</code></td>
+<td>上传完成确认</td>
+<td>失败（故意传假 rev&#x2F;docid）</td>
+</tr>
+<tr>
+<td>上传下载</td>
+<td><code>file_osdownload</code></td>
+<td>获取下载协议信息</td>
+<td>失败（故意传假 docid）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="6-最常用-8-个工具（含真实样例）"><a href="#6-最常用-8-个工具（含真实样例）" class="headerlink" title="6. 最常用 8 个工具（含真实样例）"></a>6. 最常用 8 个工具（含真实样例）</h2><h2 id="6-1-doc-lib-owned"><a href="#6-1-doc-lib-owned" class="headerlink" title="6.1 doc_lib_owned"></a>6.1 <code>doc_lib_owned</code></h2><p>输入：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;access_token&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ory_at_***&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>输出（节选）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;items&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;gns://393ECF...&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;z1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;user_doc_lib&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;gns://EA5E27...&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;qa数据&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;department_doc_lib&quot;</span><span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-2-folder-sub-objects"><a href="#6-2-folder-sub-objects" class="headerlink" title="6.2 folder_sub_objects"></a>6.2 <code>folder_sub_objects</code></h2><p>输入：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;access_token&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ory_at_***&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;gns://393ECF...&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;limit&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">5</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>输出（节选）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;doc_lib&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;gns://393ECF...&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;z1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;user_doc_lib&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;dirs&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;临时区文件夹&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;gns://393ECF.../B1E6C100...&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;files&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;next_marker&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-3-file-search"><a href="#6-3-file-search" class="headerlink" title="6.3 file_search"></a>6.3 <code>file_search</code></h2><p>输入：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;access_token&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ory_at_***&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;all&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;keyword&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;测试&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;rows&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">0</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>输出（节选）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;hits&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1000</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;next&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;files&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;basename&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;测试&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;extension&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;.docx&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;score&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">90.08</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;basename&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;测试&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;extension&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;.docx&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;score&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">88.41</span><span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-4-kc-search-wiki-docs"><a href="#6-4-kc-search-wiki-docs" class="headerlink" title="6.4 kc_search_wiki_docs"></a>6.4 <code>kc_search_wiki_docs</code></h2><p>输入：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;access_token&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ory_at_***&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;keyword&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;测试&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;rows&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">5</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">0</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>输出（节选）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;success&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;hits&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">116</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;next&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">5</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-5-file-sharedlink-realname-create"><a href="#6-5-file-sharedlink-realname-create" class="headerlink" title="6.5 file_sharedlink_realname_create"></a>6.5 <code>file_sharedlink_realname_create</code></h2><p>输入：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;access_token&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ory_at_***&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;item&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;gns://393ECF...&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;folder&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ARB005EDB9CE5D4144AC20D141B98F56F0&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;link_url&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;https://nginx-ingress-class-443/link/ARB005EDB9CE5D4144AC20D141B98F56F0&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;realname&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-6-file-share-path"><a href="#6-6-file-share-path" class="headerlink" title="6.6 file_share_path"></a>6.6 <code>file_share_path</code></h2><p>输入：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;access_token&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ory_at_***&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;docid&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;gns://393ECF...&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;item_type&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;folder&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;file_name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;z1&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;file_path_anyshare&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;AnyShare://z1&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;link_url&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;https://nginx-ingress-class-443/link/ARABECC...&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;https://...\\n文件名：z1\\n文件路径：AnyShare://z1&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-7-chat-send"><a href="#6-7-chat-send" class="headerlink" title="6.7 chat_send"></a>6.7 <code>chat_send</code></h2><p>输入：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;access_token&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ory_at_***&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;bot_id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;smart_assistant&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;query&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;你好，返回一句测试成功&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>输出（节选）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;completed&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;bot_name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;知识助手&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;answer&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;你好，测试成功。我是企业内部知识助手...&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-8-file-osbeginupload"><a href="#6-8-file-osbeginupload" class="headerlink" title="6.8 file_osbeginupload"></a>6.8 <code>file_osbeginupload</code></h2><p>输入：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;access_token&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ory_at_***&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;docid&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;gns://393ECF...&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;length&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">5</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;mcp-test.txt&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>输出（节选）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;docid&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;gns://393ECF.../15CBE0B6...&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;rev&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;17DBB0627A5A44FD98612F11FC8F12CF&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;authrequest&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;PUT&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;https://...&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;Authorization: AWS ...&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;Content-Type: application/octet-stream&quot;</span><span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="7-容易踩坑（必看）"><a href="#7-容易踩坑（必看）" class="headerlink" title="7. 容易踩坑（必看）"></a>7. 容易踩坑（必看）</h2><ul>
+<li><code>auth_pwd_login</code> 的 <code>password</code> 不是明文，必须是 RSA 加密 + base64。</li>
+<li>多数工具都支持传 <code>access_token</code>，建议显式传，避免隐式头部不一致。</li>
+<li><code>doc_lib_quota</code> 的 <code>doc_lib_id</code> 通常不能直接塞 <code>gns://...</code> 全路径（当前实测 400），要按服务端要求格式。</li>
+<li><code>file_sharedlink_realname</code> 只查“已有”链接，不会自动创建；空数组会报错文本。</li>
+<li><code>file_share_path</code> 会在没有链接时自动创建链接（有副作用）。</li>
+<li><code>file_osbeginupload</code> 只是拿上传协议，不是文件已上传；要真正完成还需“对象存储 PUT + <code>file_osendupload</code>”。</li>
+</ul>
+<hr>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/kcenter_blog/categories/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91/" class="category-chain-item">集成开发</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/kcenter_blog/tags/AnyShare/" class="print-no-link">#AnyShare</a>
+      
+        <a href="/kcenter_blog/tags/MCP/" class="print-no-link">#MCP</a>
+      
+        <a href="/kcenter_blog/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/kcenter_blog/tags/API/" class="print-no-link">#API</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AnyShare MCP 集成开发使用指南</div>
+      <div>https://kcenter-ai.github.io/kcenter_blog/2026/04/15/AnyShare_MCP用户指南/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>AnyShare Team</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年4月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/kcenter_blog/2026/04/15/%E6%99%BA%E8%83%BD%E7%9F%A5%E8%AF%86%E5%BA%93180%E5%A4%A9%E8%AF%95%E7%94%A8%E7%89%88%E4%BA%A7%E5%93%81%E7%99%BD%E7%9A%AE%E4%B9%A6/" title="AnyShare 智能知识库 180 天试用版产品白皮书">
+                        <span class="hidden-mobile">AnyShare 智能知识库 180 天试用版产品白皮书</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/kcenter_blog/js/events.js" ></script>
+<script  src="/kcenter_blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/kcenter_blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/kcenter_blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/kcenter_blog/js/boot.js" ></script>
+
+<!-- Mermaid Diagram Support -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.7/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default',
+    securityLevel: 'loose'
+  });
+</script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

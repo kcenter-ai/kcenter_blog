@@ -1,0 +1,1146 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/kcenter_blog/img/fluid.png">
+  <link rel="icon" href="/kcenter_blog/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="AnyShare Team">
+  <meta name="keywords" content="KCenter, 文档管理, 技术博客">
+  
+    <meta name="description" content="AnyShare Dify 插件是一款用于从 AnyShare 文档库中召回文档切片的工具插件，支持在工作流中灵活配置召回参数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AnyShare Dify 插件使用指南">
+<meta property="og:url" content="https://kcenter-ai.github.io/kcenter_blog/2026/04/07/Dify_AnyShare_%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="KCenter 技术博客">
+<meta property="og:description" content="AnyShare Dify 插件是一款用于从 AnyShare 文档库中召回文档切片的工具插件，支持在工作流中灵活配置召回参数。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/kcenter_blog/assets/17755699874971.jpg">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/kcenter_blog/assets/17755702749519.jpg">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/kcenter_blog/assets/17755703873895.jpg">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/kcenter_blog/assets/17755705259467.jpg">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/kcenter_blog/assets/17755706235976.jpg">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/kcenter_blog/assets/17755706737950.jpg">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/kcenter_blog/assets/17755708559592.jpg">
+<meta property="article:published_time" content="2026-04-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-18T01:55:59.484Z">
+<meta property="article:author" content="AnyShare Team">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="AnyShare">
+<meta property="article:tag" content="Dify">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kcenter-ai.github.io/kcenter_blog/kcenter_blog/assets/17755699874971.jpg">
+  
+  
+  
+  <title>AnyShare Dify 插件使用指南 - KCenter 技术博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/kcenter_blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/kcenter_blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/kcenter_blog/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" head_end="&lt;style&gt;.main-content { max-width: 100% !important; } .article-content table { font-size: 14px; } .article-content table td, .article-content table th { padding: 10px 12px; } .tocbot-list .tocbot-list { display: block !important; } .toc-toggle::before { content: &quot;▼&quot;; } .toc-toggle-placeholder::before { content: &quot;▶&quot;; }&lt;&#x2F;style&gt;" href="/kcenter_blog/.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kcenter-ai.github.io","root":"/kcenter_blog/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/kcenter_blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/kcenter_blog/js/utils.js" ></script>
+  <script  src="/kcenter_blog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/kcenter_blog/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/kcenter_blog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AnyShare Dify 插件使用指南"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-04-07 00:00" pubdate>
+          2026年4月7日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AnyShare Dify 插件使用指南</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="AnyShare-Dify-插件使用指南"><a href="#AnyShare-Dify-插件使用指南" class="headerlink" title="AnyShare Dify 插件使用指南"></a>AnyShare Dify 插件使用指南</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E5%89%8D%E7%BD%AE%E5%87%86%E5%A4%87">前置准备</a></li>
+<li><a href="#%E6%8F%92%E4%BB%B6%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85">插件下载与安装</a></li>
+<li><a href="#%E5%85%B3%E9%97%AD%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6%E9%AA%8C%E8%AF%81">关闭第三方插件验证</a></li>
+<li><a href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E9%85%8D%E7%BD%AE">工作流配置</a></li>
+<li><a href="#%E5%8F%AC%E5%9B%9E%E8%8A%82%E7%82%B9%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE">召回节点参数配置</a></li>
+<li><a href="#%E5%8F%AC%E5%9B%9E%E8%8A%82%E7%82%B9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E5%8F%AF%E9%80%89">召回节点环境变量配置（可选）</a></li>
+<li><a href="#%E5%8F%AC%E5%9B%9E%E8%8A%82%E7%82%B9%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C%E4%BD%BF%E7%94%A8">召回节点输出结果使用</a></li>
+<li><a href="#%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E6%B5%8B%E8%AF%95">整体流程测试</a></li>
+<li><a href="#%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E6%9F%A5%E7%9C%8B">执行结果查看</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a></li>
+</ol>
+<span id="more"></span>
+
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>AnyShare Dify 插件是一款用于从 AnyShare 文档库中召回文档切片的工具插件。通过该插件，您可以在 Dify 工作流中集成 AnyShare 的文档检索能力，实现基于企业文档知识的 RAG（检索增强生成）应用。</p>
+<h3 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h3><ul>
+<li>从 AnyShare 文档库中检索相关文档切片</li>
+<li>支持切片检索</li>
+<li>可与企业现有文档权限体系集成</li>
+<li>支持在工作流中灵活配置召回参数</li>
+</ul>
+<hr>
+<h2 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h2><p>在使用 AnyShare Dify 插件之前，您需要提前准备好以下信息：</p>
+<h3 id="1-应用账户凭证"><a href="#1-应用账户凭证" class="headerlink" title="1. 应用账户凭证"></a>1. 应用账户凭证</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>获取方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用账户 ID</td>
+<td>用于身份认证</td>
+<td>联系 AnyShare 管理员申请</td>
+</tr>
+<tr>
+<td>应用账户密钥</td>
+<td>用于身份认证</td>
+<td>联系 AnyShare 管理员申请</td>
+</tr>
+</tbody></table>
+<h3 id="2-文档库权限"><a href="#2-文档库权限" class="headerlink" title="2. 文档库权限"></a>2. 文档库权限</h3><p>确保为应用账户分配了对应的文档库权限，且该文档库满足以下条件：</p>
+<ul>
+<li>已开启全文解析功能</li>
+<li>已开启向量切片功能</li>
+</ul>
+<h3 id="3-服务访问地址"><a href="#3-服务访问地址" class="headerlink" title="3. 服务访问地址"></a>3. 服务访问地址</h3><p>准备 AnyShare 服务的访问 base_url，例如：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">https:</span><span class="hljs-comment">//your-anyshare-server:8080</span><br></code></pre></td></tr></table></figure>
+
+<p>或生产环境地址：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">https:</span><span class="hljs-comment">//your-anyshare-domain.com</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="插件下载与安装"><a href="#插件下载与安装" class="headerlink" title="插件下载与安装"></a>插件下载与安装</h2><h3 id="插件包"><a href="#插件包" class="headerlink" title="插件包"></a>插件包</h3><p>插件包文件：<code>anyshare_retrieval.difypkg</code></p>
+<p>插件包下载：<a href="/kcenter_blog/assets/anyshare_retrieval.difypkg">anyshare_retrieval.difypkg</a></p>
+<h3 id="安装步骤（本地文件方式）"><a href="#安装步骤（本地文件方式）" class="headerlink" title="安装步骤（本地文件方式）"></a>安装步骤（本地文件方式）</h3><ol>
+<li><p>登录 Dify 平台</p>
+</li>
+<li><p>进入 <strong>插件管理</strong> 页面</p>
+<ul>
+<li>点击 Dify 平台右上角的「插件」按钮</li>
+<li>进入插件管理页面</li>
+</ul>
+</li>
+<li><p>选择 <strong>上传本地文件</strong> 方式</p>
+</li>
+<li><p>上传 <code>anyshare_retrieval.difypkg</code> 文件</p>
+</li>
+<li><p>等待插件安装完成</p>
+</li>
+</ol>
+<hr>
+<h2 id="关闭第三方插件验证"><a href="#关闭第三方插件验证" class="headerlink" title="关闭第三方插件验证"></a>关闭第三方插件验证</h2><blockquote>
+<p>⚠️ <strong>重要</strong>：在某些 Dify 配置下，可能需要关闭第三方插件验证才能正常使用。</p>
+</blockquote>
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
+<li><p>进入 Dify 系统设置</p>
+</li>
+<li><p>找到 <strong>插件安全设置</strong> 或 <strong>第三方插件验证</strong> 相关选项</p>
+</li>
+<li><p>关闭第三方插件验证功能</p>
+</li>
+<li><p>保存设置</p>
+</li>
+</ol>
+<hr>
+<h2 id="Dify-本地插件安装指导"><a href="#Dify-本地插件安装指导" class="headerlink" title="Dify 本地插件安装指导"></a>Dify 本地插件安装指导</h2><h3 id="离线-本地安装"><a href="#离线-本地安装" class="headerlink" title="离线&#x2F;本地安装"></a>离线&#x2F;本地安装</h3><p><img src="/kcenter_blog/kcenter_blog/assets/17755699874971.jpg" srcset="/kcenter_blog/img/loading.gif" lazyload></p>
+<ol>
+<li>从本地上传 <code>.difypkg</code> 文件</li>
+<li>点击「上传本地文件」按钮</li>
+<li>选择已下载的插件包</li>
+<li>确认安装</li>
+</ol>
+<hr>
+<h2 id="工作流配置"><a href="#工作流配置" class="headerlink" title="工作流配置"></a>工作流配置</h2><h3 id="创建工作流"><a href="#创建工作流" class="headerlink" title="创建工作流"></a>创建工作流</h3><ol>
+<li><p>在 Dify 平台中创建新的应用或进入现有应用</p>
+</li>
+<li><p>选择 <strong>工作流</strong> 类型</p>
+</li>
+<li><p>点击「创建空白工作流」</p>
+</li>
+<li><p>在工作流画布中，创建类似以下的工作流：</p>
+</li>
+</ol>
+<p><img src="/kcenter_blog/kcenter_blog/assets/17755702749519.jpg" srcset="/kcenter_blog/img/loading.gif" lazyload></p>
+<h3 id="工作流节点说明"><a href="#工作流节点说明" class="headerlink" title="工作流节点说明"></a>工作流节点说明</h3><p>典型的工作流应包含以下节点：</p>
+<table>
+<thead>
+<tr>
+<th>节点类型</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开始节点</td>
+<td>接收用户输入的查询问题</td>
+</tr>
+<tr>
+<td>AnyShare 召回节点</td>
+<td>从 AnyShare 文档库检索相关切片</td>
+</tr>
+<tr>
+<td>输出节点</td>
+<td>用于查看召回节点的输出结果</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="召回节点参数配置"><a href="#召回节点参数配置" class="headerlink" title="召回节点参数配置"></a>召回节点参数配置</h2><p>召回节点是整个插件的核心，用于配置从 AnyShare 检索文档切片的参数。</p>
+<h3 id="参数配置界面"><a href="#参数配置界面" class="headerlink" title="参数配置界面"></a>参数配置界面</h3><p><img src="/kcenter_blog/kcenter_blog/assets/17755703873895.jpg" srcset="/kcenter_blog/img/loading.gif" lazyload></p>
+<h3 id="主要参数说明"><a href="#主要参数说明" class="headerlink" title="主要参数说明"></a>主要参数说明</h3><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>必填</th>
+<th>说明</th>
+<th>示例值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查询语句</td>
+<td>是</td>
+<td>用户问题</td>
+<td><code>anyshare是什么？</code></td>
+</tr>
+<tr>
+<td>基础 URL</td>
+<td>是</td>
+<td>AnyShare 服务访问地址</td>
+<td><code>https://192.168.1.100:8080</code></td>
+</tr>
+<tr>
+<td>username</td>
+<td>是</td>
+<td>应用账户 ID</td>
+<td><code>your_app_id</code></td>
+</tr>
+<tr>
+<td>password</td>
+<td>是</td>
+<td>应用账户密钥</td>
+<td><code>your_app_key</code></td>
+</tr>
+<tr>
+<td>限制</td>
+<td>是</td>
+<td>召回的切片大小限制</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td>输出类型</td>
+<td>是</td>
+<td>召回的切片类型</td>
+<td><code>doc</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="召回节点环境变量配置（可选）"><a href="#召回节点环境变量配置（可选）" class="headerlink" title="召回节点环境变量配置（可选）"></a>召回节点环境变量配置（可选）</h2><p>除了直接配置参数，还可以通过环境变量的方式配置插件，这种方式更适合多环境切换。</p>
+<h3 id="配置界面"><a href="#配置界面" class="headerlink" title="配置界面"></a>配置界面</h3><p><img src="/kcenter_blog/kcenter_blog/assets/17755705259467.jpg" srcset="/kcenter_blog/img/loading.gif" lazyload></p>
+<h3 id="环境变量说明"><a href="#环境变量说明" class="headerlink" title="环境变量说明"></a>环境变量说明</h3><table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>说明</th>
+<th>配置位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>limit</code></td>
+<td>切片返回大小数量限制</td>
+<td>Dify 工作流环境变量设置，上面的参数配置可以引用此环境变量</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="召回节点输出结果使用"><a href="#召回节点输出结果使用" class="headerlink" title="召回节点输出结果使用"></a>召回节点输出结果使用</h2><p>检索到的文档切片需要传递给后续的 LLM 节点使用。</p>
+<h3 id="输出结果格式"><a href="#输出结果格式" class="headerlink" title="输出结果格式"></a>输出结果格式</h3><p>召回节点会输出以下格式的结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;output&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;results&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-punctuation">&#123;</span><br>          <span class="hljs-attr">&quot;doc_name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;游戏人物详细介绍：艾莉娅·星焰 详细介绍&quot;</span><span class="hljs-punctuation">,</span><br>          <span class="hljs-attr">&quot;doc_path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;gns://产研&quot;</span><span class="hljs-punctuation">,</span><br>          <span class="hljs-attr">&quot;raw_text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;## Page 1**游戏人物详细介绍：艾莉娅·星焰（Aeliah Starflame）——《暗影纪元》中的光暗双生战姬****一、人物背景**艾莉娅·星焰是史诗级奇幻 RPG 游戏《暗影纪元》中最具代表性的核心角色之一，被誉为“光与暗的双生战姬”。她出生于被遗忘的古老种族——星裔族，这一族曾是远古星神的仆从，拥有操控星辰之力的能力。然而，在一场神魔大战中，星裔族因背叛与内乱几乎灭绝，艾莉娅是唯一幸存的纯血后裔。&quot;</span><span class="hljs-punctuation">,</span><br>          <span class="hljs-attr">&quot;score&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10.40712547302246</span><span class="hljs-punctuation">,</span><br>          <span class="hljs-attr">&quot;slice_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;e1dd911&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><br>      <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;total&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="在输出节点中使用召回结果"><a href="#在输出节点中使用召回结果" class="headerlink" title="在输出节点中使用召回结果"></a>在输出节点中使用召回结果</h3><p><img src="/kcenter_blog/kcenter_blog/assets/17755706235976.jpg" srcset="/kcenter_blog/img/loading.gif" lazyload></p>
+<h2 id="整体流程测试"><a href="#整体流程测试" class="headerlink" title="整体流程测试"></a>整体流程测试</h2><p>完成以上配置后，需要对整个工作流进行测试。</p>
+<h3 id="测试步骤"><a href="#测试步骤" class="headerlink" title="测试步骤"></a>测试步骤</h3><ol>
+<li><p>点击工作流编辑页面右上角「发布」按钮</p>
+</li>
+<li><p>进入 <strong>运行测试</strong> 页面</p>
+</li>
+<li><p>在输入框中输入测试问题，例如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">请检索关于XXX的文档内容<br></code></pre></td></tr></table></figure></li>
+<li><p>点击「运行」按钮执行工作流</p>
+</li>
+</ol>
+<h3 id="测试界面"><a href="#测试界面" class="headerlink" title="测试界面"></a>测试界面</h3><p><img src="/kcenter_blog/kcenter_blog/assets/17755706737950.jpg" srcset="/kcenter_blog/img/loading.gif" lazyload></p>
+<hr>
+<h2 id="执行结果查看"><a href="#执行结果查看" class="headerlink" title="执行结果查看"></a>执行结果查看</h2><h3 id="查看检索结果"><a href="#查看检索结果" class="headerlink" title="查看检索结果"></a>查看检索结果</h3><p>测试完成后，可以查看各节点的执行结果。</p>
+<h3 id="结果查看界面"><a href="#结果查看界面" class="headerlink" title="结果查看界面"></a>结果查看界面</h3><p><img src="/kcenter_blog/kcenter_blog/assets/17755708559592.jpg" srcset="/kcenter_blog/img/loading.gif" lazyload></p>
+<h3 id="检查项"><a href="#检查项" class="headerlink" title="检查项"></a>检查项</h3><table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>召回节点输出</td>
+<td>确认检索到了相关文档切片</td>
+</tr>
+<tr>
+<td>文档相关性</td>
+<td>检查召回的文档是否与查询相关</td>
+</tr>
+<tr>
+<td>输出生成结果</td>
+<td>检查输出的结果是否成功输出</td>
+</tr>
+</tbody></table>
+<h3 id="常见结果状态"><a href="#常见结果状态" class="headerlink" title="常见结果状态"></a>常见结果状态</h3><ul>
+<li><strong>成功</strong>：工作流正常运行，召回相关文档</li>
+<li><strong>无结果</strong>：未召回任何文档，可能需要调整参数</li>
+<li><strong>错误</strong>：节点执行出错，检查配置是否正确</li>
+</ul>
+<hr>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="Q1-插件安装失败怎么办？"><a href="#Q1-插件安装失败怎么办？" class="headerlink" title="Q1: 插件安装失败怎么办？"></a>Q1: 插件安装失败怎么办？</h3><p><strong>解决方案</strong>：</p>
+<ol>
+<li>确认 <code>.difypkg</code> 文件完整未损坏</li>
+<li>关闭第三方插件验证</li>
+<li>检查 Dify 版本是否支持该插件</li>
+</ol>
+<h3 id="Q2-召回结果为空？"><a href="#Q2-召回结果为空？" class="headerlink" title="Q2: 召回结果为空？"></a>Q2: 召回结果为空？</h3><p><strong>可能原因</strong>：</p>
+<ol>
+<li>应用账户没有文档库权限</li>
+<li>文档库未开启全文解析或向量切片</li>
+</ol>
+<p><strong>解决方案</strong>：</p>
+<ol>
+<li>联系管理员确认权限配置</li>
+<li>确认文档库已正确配置</li>
+</ol>
+<h3 id="Q3-召回结果不准确？"><a href="#Q3-召回结果不准确？" class="headerlink" title="Q3: 召回结果不准确？"></a>Q3: 召回结果不准确？</h3><p><strong>解决方案</strong>：</p>
+<ol>
+<li>调整 limit 参数，增加召回数量</li>
+<li>优化查询问题的表述</li>
+</ol>
+<h3 id="Q4-如何确认文档库已开启全文解析和向量切片？"><a href="#Q4-如何确认文档库已开启全文解析和向量切片？" class="headerlink" title="Q4: 如何确认文档库已开启全文解析和向量切片？"></a>Q4: 如何确认文档库已开启全文解析和向量切片？</h3><p><strong>检查方式</strong>：</p>
+<ol>
+<li>登录 AnyShare 管理控制台</li>
+<li>进入智能搜索-文档解析策略</li>
+<li>确认对应文档库或文件目录的「全文解析」和「向量切片」功能已启用</li>
+</ol>
+<h3 id="Q5-应用账户-ID-和密钥如何获取？"><a href="#Q5-应用账户-ID-和密钥如何获取？" class="headerlink" title="Q5: 应用账户 ID 和密钥如何获取？"></a>Q5: 应用账户 ID 和密钥如何获取？</h3><p><strong>获取方式</strong>：<br>联系 AnyShare 管理员申请，需要提供：</p>
+<ul>
+<li>应用名称</li>
+<li>需要的文档库权限范围</li>
+<li>预期用途说明</li>
+</ul>
+<hr>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="相关资源"><a href="#相关资源" class="headerlink" title="相关资源"></a>相关资源</h3><ul>
+<li>Dify 官方文档：<a target="_blank" rel="noopener" href="https://docs.dify.ai/">https://docs.dify.ai/</a></li>
+<li>Dify 插件开发指南：<a target="_blank" rel="noopener" href="https://github.com/langgenius/dify-plugin-daemon">https://github.com/langgenius/dify-plugin-daemon</a></li>
+<li>AnyShare 产品文档：请联系 AnyShare 管理员</li>
+</ul>
+<h3 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>插件包</td>
+<td>anyshare_retrieval.difypkg</td>
+</tr>
+<tr>
+<td>支持 Dify 版本</td>
+<td>1.4.1+</td>
+</tr>
+<tr>
+<td>支持 Python 版本</td>
+<td>3.12+</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>本文档由 AnyShare 团队提供，如有问题请联系技术支持。</em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/kcenter_blog/categories/%E6%99%BA%E8%83%BD%E7%9F%A5%E8%AF%86%E5%BA%93/" class="category-chain-item">智能知识库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/kcenter_blog/tags/AnyShare/" class="print-no-link">#AnyShare</a>
+      
+        <a href="/kcenter_blog/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/kcenter_blog/tags/Dify/" class="print-no-link">#Dify</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AnyShare Dify 插件使用指南</div>
+      <div>https://kcenter-ai.github.io/kcenter_blog/2026/04/07/Dify_AnyShare_插件使用指南/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>AnyShare Team</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年4月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/kcenter_blog/2026/04/07/%E7%88%B1%E6%95%B0%E6%99%BA%E8%83%BD%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E5%BC%80%E6%94%BE%E8%9E%8D%E5%90%88%E6%96%B9%E6%A1%88/" title="爱数智能知识管理开放融合方案">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">爱数智能知识管理开放融合方案</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/kcenter_blog/2026/04/06/AnyShare%E5%BC%80%E6%94%BE%E4%B8%8E%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88/" title="AnyShare 开放与集成方案">
+                        <span class="hidden-mobile">AnyShare 开放与集成方案</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/kcenter_blog/js/events.js" ></script>
+<script  src="/kcenter_blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/kcenter_blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/kcenter_blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/kcenter_blog/js/boot.js" ></script>
+
+<!-- Mermaid Diagram Support -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.7/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default',
+    securityLevel: 'loose'
+  });
+</script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

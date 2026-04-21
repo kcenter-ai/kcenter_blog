@@ -1,0 +1,1107 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/kcenter_blog/img/fluid.png">
+  <link rel="icon" href="/kcenter_blog/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="AnyShare Team">
+  <meta name="keywords" content="KCenter, 文档管理, 技术博客">
+  
+    <meta name="description" content="AnyShare 7.0.6.7 实施部署指导文档，包含对象存储、部署控制台、信息安全编织、内容数据湖、主模块安装及许可配置等关键步骤。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AnyShare 7.0.6.7 实施部署手册">
+<meta property="og:url" content="https://kcenter-ai.github.io/kcenter_blog/2026/03/10/AnyShare%207.0.6.7%E5%AE%9E%E6%96%BD%E9%83%A8%E7%BD%B2%E6%89%8B%E5%86%8C/index.html">
+<meta property="og:site_name" content="KCenter 技术博客">
+<meta property="og:description" content="AnyShare 7.0.6.7 实施部署指导文档，包含对象存储、部署控制台、信息安全编织、内容数据湖、主模块安装及许可配置等关键步骤。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-18T01:57:44.309Z">
+<meta property="article:author" content="AnyShare Team">
+<meta property="article:tag" content="AnyShare">
+<meta property="article:tag" content="实施">
+<meta property="article:tag" content="部署">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>AnyShare 7.0.6.7 实施部署手册 - KCenter 技术博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/kcenter_blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/kcenter_blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/kcenter_blog/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" head_end="&lt;style&gt;.main-content { max-width: 100% !important; } .article-content table { font-size: 14px; } .article-content table td, .article-content table th { padding: 10px 12px; } .tocbot-list .tocbot-list { display: block !important; } .toc-toggle::before { content: &quot;▼&quot;; } .toc-toggle-placeholder::before { content: &quot;▶&quot;; }&lt;&#x2F;style&gt;" href="/kcenter_blog/.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kcenter-ai.github.io","root":"/kcenter_blog/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/kcenter_blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/kcenter_blog/js/utils.js" ></script>
+  <script  src="/kcenter_blog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/kcenter_blog/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/kcenter_blog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AnyShare 7.0.6.7 实施部署手册"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-10 00:00" pubdate>
+          2026年3月10日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          36 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AnyShare 7.0.6.7 实施部署手册</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="AnyShare-7-0-6-7-实施部署手册"><a href="#AnyShare-7-0-6-7-实施部署手册" class="headerlink" title="AnyShare 7.0.6.7 实施部署手册"></a>AnyShare 7.0.6.7 实施部署手册</h1><p>原文档下载：<a href="/kcenter_blog/assets/AnyShare%207.0.6.7%20%E5%AE%9E%E6%96%BD%E6%8C%87%E5%AF%BC%E6%89%8B%E5%86%8C.docx">AnyShare 7.0.6.7 实施指导手册.docx</a></p>
+<span id="more"></span>
+
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E">版权声明</a></li>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8">对象存储</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%E6%8E%A7%E5%88%B6%E5%8F%B0">安装部署控制台</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%BC%96%E7%BB%87%E5%8C%85">安装信息安全编织包</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E5%86%85%E5%AE%B9%E6%95%B0%E6%8D%AE%E6%B9%96%E6%A8%A1%E5%9D%97%E5%8C%85">安装内容数据湖模块包</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E5%86%85%E5%AE%B9%E6%95%B0%E6%8D%AE%E6%B9%96">配置内容数据湖</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E4%B8%BB%E6%A8%A1%E5%9D%97">安装主模块</a></li>
+<li><a href="#%E8%AE%B8%E5%8F%AF%E4%B8%8E%E8%AE%A2%E9%98%85">许可与订阅</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8">配置对象存储</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85embedding">安装Embedding</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85rerank">安装Rerank</a></li>
+</ol>
+<h1 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h1><p>版权所有 ©2006 - 2026上海爱数信息技术股份有限公司 保留一切权利。</p>
+<p><strong>商标声明</strong></p>
+<p>和其他爱数商标均为上海爱数信息技术股份有限公司的注册商标。</p>
+<p>本文档提及的其他所有商标或注册商标，由其各自的所有者拥有。</p>
+<p><strong>注意</strong></p>
+<p>未经本公司书面许可，任何单位或个人不得以任何形式，复制、摘抄、和传播本文档内容的部分或全部。</p>
+<p>由于产品版本升级或其他原因，本文档将不定期进行更新，可能增删和修改内容。本文档仅作为使用指导，文档中的所有信息和建议不构成任何明示或暗示的担保。修订内容将合并到新的文档版本中，如有更改恕不另行通知。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感谢您选用爱数内容云产品。本文档主要包含AnyShare产品包的安装。在您使用AnyShare产品前，请详细阅读本文档。</p>
+<p>适用版本</p>
+<p>本文档适用于AnyShare 7.0.6.7版本。</p>
+<p>目标读者</p>
+<p>本手册适合下列人员阅读：</p>
+<ul>
+<li>IT工程师</li>
+</ul>
+<p>文档信息</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>编写人：</td>
+<td>测试组</td>
+<td>编写日期：</td>
+<td>20260130</td>
+</tr>
+<tr>
+<td>文件状态：</td>
+<td>[ ] 草稿 [√] 正式发布</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>变更内容</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>名词解释</p>
+<p>主机名：通过hostname命令获取。</p>
+<p>节点名：自定义名字，与主机名无关。</p>
+<p>Eceph高可用IP：Eceph内部高可用使用。</p>
+<p>集群高可用IP：AnyShare集群高可用IP。</p>
+<p>内部IP：ECeph内部IP地址。</p>
+<p>node_ip：节点IP，用于SSH连接，初始化ECeph时会使用。</p>
+<ol>
+<li>对象存储</li>
+</ol>
+<h2 id="对象存储"><a href="#对象存储" class="headerlink" title="对象存储"></a>对象存储</h2><p>如果已有第三方存储，如华为云存储，本章可跳过，支持的第三方存储见下图：</p>
+<p>如果无第三方存储，可根据在线文档在实体机中部署Eceph存储：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.aishu.cn/help/deploymentstudio/dui-xiang-cun-chu-fu-wueceph-an-zhuang-zhi-da_75834">https://docs.aishu.cn/help/deploymentstudio/dui-xiang-cun-chu-fu-wueceph-an-zhuang-zhi-da_75834</a></p>
+<ol>
+<li>安装部署控制台</li>
+</ol>
+<h2 id="安装部署控制台"><a href="#安装部署控制台" class="headerlink" title="安装部署控制台"></a>安装部署控制台</h2><p>根据在线手册，安装初始化平台和部署控制台，一直执行到5.4.1 安装系统工作台章节：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.aishu.cn/help/deploymentstudio/chan-pin-an-zhuang-zhi-dao_75894">https://docs.aishu.cn/help/deploymentstudio/chan-pin-an-zhuang-zhi-dao_75894</a></p>
+<ol>
+<li>安装信息安全编织</li>
+</ol>
+<h2 id="安装信息安全编织包"><a href="#安装信息安全编织包" class="headerlink" title="安装信息安全编织包"></a>安装信息安全编织包</h2><ol>
+<li><p>将信息安全编织的安装包（镜像包和产品包）推送至指定目录：~&#x2F;Upgradepackage&#x2F;module</p>
+</li>
+<li><p>推送产品镜像包：proton-cli package push –package ~&#x2F;Upgradepackage&#x2F;module&#x2F; -n 自定义命名空间（自定义命名空间默认为AnyShare）</p>
+</li>
+<li><p>登录部署控制台，选择【服务管理】–【服务部署】</p>
+</li>
+<li><p>选择安装的应用，点击【选择服务】，选中信息安装编织，选择安装版本，点击【确定】</p>
+</li>
+<li><p>点击【确定】后，如果出现已安装的服务，点击【删除】</p>
+</li>
+<li><p>点击【下一步】，检查信息安全编织配置项参数</p>
+</li>
+<li><p>参数检查无误后，滑动右侧参数列表至底部，点击【提交】按钮</p>
+</li>
+<li><p>点击【下一步】，确认安装信息无误后，点击【确定】按钮，开始安装信息安全编织模块包</p>
+</li>
+<li><p>安装和配置内容数据湖</p>
+</li>
+</ol>
+<h2 id="安装内容数据湖模块包"><a href="#安装内容数据湖模块包" class="headerlink" title="安装内容数据湖模块包"></a>安装内容数据湖模块包</h2><ol>
+<li>将内容数据湖的安装包（镜像包和产品包）推送至指定目录：~&#x2F;Upgradepackage&#x2F;module</li>
+<li>推送产品镜像包：proton-cli package push –package ~&#x2F;Upgradepackage&#x2F;module&#x2F; -n 自定义命名空间（自定义命名空间默认为AnyShare）</li>
+<li>登录部署控制台，选择【服务管理】–【服务部署】</li>
+<li>选择安装的应用，点击【选择服务】，选中内容数据湖，选择安装版本，点击【确定】</li>
+<li>点击【确定】后，如果出现已安装的服务，点击【删除】</li>
+<li>点击【下一步】，参考4.2章节，填写内容数据湖参数</li>
+</ol>
+<h2 id="配置内容数据湖"><a href="#配置内容数据湖" class="headerlink" title="配置内容数据湖"></a>配置内容数据湖</h2><p>如果需要文字转向量，内容数据湖总需要配置embedding连接信息。可使用自己已有的embedding模型信息，也可以根据手册第6章内容在当前环境部署embedding模型</p>
+<ol>
+<li>自己已有embedding模型，在内容数据湖参数页面，搜索embedding连接信息，Type选择embedding，按实际情况填写协议、地址、端口embedding模型信息</li>
+<li>AnyShare自带基础版切片服务，如果已部署模型版（GPU）切片服务，需要进行额外配置。搜索切片服务，将content-extractor GPU服务开关设置为true，并填入相关信息：</li>
+<li>完成后，点击右侧底部【提交】提交配置项</li>
+<li>安装和配置AnyShare</li>
+</ol>
+<h2 id="安装主模块"><a href="#安装主模块" class="headerlink" title="安装主模块"></a>安装主模块</h2><ol>
+<li><p>将主模块的安装包（镜像包和产品包）推送至指定目录：~&#x2F;Upgradepackage&#x2F;module</p>
+</li>
+<li><p>推送产品镜像包：proton-cli package push –package ~&#x2F;Upgradepackage&#x2F;module&#x2F; -n 自定义命名空间（自定义命名空间默认为AnyShare）</p>
+</li>
+<li><p>登录部署控制台，安装主模块</p>
+</li>
+<li><p>选择安装的应用，点击【选择服务】，选中AnyShare主模块，点击【确定】。</p>
+</li>
+<li><p>选择要安装的版本，点击【确认】。</p>
+</li>
+<li><p>填写6.2doc-sync模块参数配置：</p>
+</li>
+<li><p>查看环境的node name：</p>
+</li>
+<li><p>先定义自定义标签：</p>
+</li>
+<li><p>安装时填写标签：</p>
+</li>
+</ol>
+<p>若环境为多节点，则指定其中某个节点定义该标签（因doc-sync为单副本，需指定运行节点）。</p>
+<ol>
+<li><p>填写intelli-search配置</p>
+</li>
+<li><p>点击【提交】提交模块参数配置</p>
+</li>
+<li><p>点击【确定】等待服务安装完成</p>
+</li>
+<li><p>可在【任务监控】页面查看安装进度，安装完成后任务状态将更新为“成功”。</p>
+</li>
+<li><p>安装完成后，进入【服务部署】页面，可查看已安装的主模块。</p>
+</li>
+</ol>
+<h2 id="许可与订阅"><a href="#许可与订阅" class="headerlink" title="许可与订阅"></a>许可与订阅</h2><ul>
+<li>说明：请根据实际的产品型号接入订阅或者添加许可。<ul>
+<li><ol>
+<li>接入订阅</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><p>使用浏览器访问<a target="_blank" rel="noopener" href="https://ip/deploy%E3%80%82">https://ip/deploy。</a></p>
+</li>
+<li><p>点击【许可与订阅】。</p>
+</li>
+<li><p>点击【接入运营系统】，弹出【接入运营系统】弹框。</p>
+</li>
+<li><p>输入运营系统地址和接入码，点击【测试】。测试通过之后，点击【接入】。</p>
+</li>
+<li><p>最后点击【同步订阅服务】，同步订阅服务。</p>
+</li>
+</ol>
+<ul>
+<li><ul>
+<li><ol>
+<li>添加许可</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><p>使用浏览器访问<a target="_blank" rel="noopener" href="https://ip/deploy%E3%80%82">https://ip/deploy。</a></p>
+</li>
+<li><p>点击【许可与订阅】。</p>
+</li>
+<li><p>点击【管理许可证】，然后会弹出【添加许可证】，许可添加完成后即可激活许可。</p>
+</li>
+</ol>
+<h2 id="配置对象存储"><a href="#配置对象存储" class="headerlink" title="配置对象存储"></a>配置对象存储</h2><ol>
+<li><p>进入AnyShare的集群管理界面，使用浏览器访问部署工作台，点击【环境与资源】–【对象存储】，弹出列表，点击【对象存储】，在存储设置页面点击【添加存储服务】。</p>
+</li>
+<li><p>自定义存储名称，存储模式可选择【第三方存储】，产品选择【AnyShare主模块】。根据实际需求选择启用或不启用网关服务，点击【确定】。</p>
+</li>
+</ol>
+<ul>
+<li>说明：若没有对AnyShare的备份需求，建议关闭网关服务，因为直连公有云存储可以使用更大的带宽，体验会更好。</li>
+</ul>
+<ol>
+<li><p>选择指定的云存储厂家，【测试】连接成功之后，点击【保存】（该存储信息为示例）。</p>
+</li>
+<li><p>界面显示已添加的存储，将要使用的存储设置为默认存储。点击【操作】按钮，选择【编辑存储服务】。</p>
+</li>
+</ol>
+<ul>
+<li>备注：在外置对象存储时，添加跨域规则，请访问对应的对象存储管理平台进入【对象存储oss】，找到相对应使用的bucket，以下是操作步骤（以下图片为华为云示例）：</li>
+</ul>
+<ol>
+<li>点击【访问权限控制-CORS规则】。</li>
+</ol>
+<p>华为云示例</p>
+<ol>
+<li>编辑跨域规则。</li>
+</ol>
+<p>对于来源Origin以及Allow Headers都填*即可，操作Methods勾选“PUT”、“GET”、“POST”，还需要暴露Headers加上：Location、Content-Range、Content-Length、Accept-Ranges、Etag，每行一个。点击【确定】保存即可。</p>
+<p>华为云示例</p>
+<ol>
+<li>安装Embedding</li>
+</ol>
+<h2 id="安装Embedding"><a href="#安装Embedding" class="headerlink" title="安装Embedding"></a>安装Embedding</h2><p>内置Embedding小模型，提供文本、图片等数据转换为向量表示的能力。</p>
+<ol>
+<li><p>将所需文件上传到有GPU的节点目录下。</p>
+</li>
+<li><p>编辑 docker-compose-[小模型名].yml：</p>
+<ul>
+<li>按需修改端口：修改ports 下面一行 : 前的端口，后面为容器内部端口，禁止修改。</li>
+<li>修改device_ids后面的数字为实际使用的GPU卡号，使用命令nvidia-smi 查询卡号。</li>
+</ul>
+</li>
+<li><p>加载镜像：docker load -i infer-5.0.2.tgz</p>
+</li>
+<li><p>启动模型：docker compose -f docker-compose-[小模型名].yml up -d</p>
+</li>
+<li><p>查看容器是否正常启动</p>
+<ul>
+<li>docker ps -a | grep [小模型名称]</li>
+<li>检测方法参考2.4中的2-5，相关SVC-IP和端口换成主机IP和容器暴露的主机端口。</li>
+</ul>
+</li>
+<li><p>检查防火墙是否启动</p>
+<ul>
+<li>systemctl status firewalld</li>
+</ul>
+</li>
+<li><p>如果防火墙启动，开放端口</p>
+<ul>
+<li>firewall-cmd –zone&#x3D;public –add-port&#x3D;[容器主机端口]&#x2F;tcp</li>
+<li>firewall-cmd –zone&#x3D;public –add-port&#x3D;[容器主机端口]&#x2F;tcp –permanent</li>
+</ul>
+</li>
+<li><p>安装Rerank</p>
+</li>
+</ol>
+<h2 id="安装Rerank"><a href="#安装Rerank" class="headerlink" title="安装Rerank"></a>安装Rerank</h2><ol>
+<li>本机安装Rerank后，intelli-search服务便可直接读取，无需额外配置</li>
+<li>将所需文件上传到有GPU的节点目录下。</li>
+<li>编辑 docker-compose-[小模型名].yml：<ul>
+<li>按需修改端口：修改ports 下面一行 : 前的端口，后面为容器内部端口，禁止修改。</li>
+<li>修改device_ids后面的数字为实际使用的GPU卡号，使用命令nvidia-smi 查询卡号。</li>
+</ul>
+</li>
+<li>加载镜像：docker load -i infer-5.0.2.tgz</li>
+<li>启动模型：docker compose -f docker-compose-[小模型名].yml up -d</li>
+<li>查看容器是否正常启动<ul>
+<li>docker ps -a | grep [小模型名称]</li>
+<li>检测方法参考2.4中的2-5，相关SVC-IP和端口换成主机IP和容器暴露的主机端口。</li>
+</ul>
+</li>
+<li>检查防火墙是否启动<ul>
+<li>systemctl status firewalld</li>
+</ul>
+</li>
+<li>如果防火墙启动，开放端口<ul>
+<li>firewall-cmd –zone&#x3D;public –add-port&#x3D;[容器主机端口]&#x2F;tcp</li>
+<li>firewall-cmd –zone&#x3D;public –add-port&#x3D;[容器主机端口]&#x2F;tcp –permanent</li>
+</ul>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/kcenter_blog/categories/%E5%AE%9E%E6%96%BD%E9%83%A8%E7%BD%B2/" class="category-chain-item">实施部署</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/kcenter_blog/tags/AnyShare/" class="print-no-link">#AnyShare</a>
+      
+        <a href="/kcenter_blog/tags/%E9%83%A8%E7%BD%B2/" class="print-no-link">#部署</a>
+      
+        <a href="/kcenter_blog/tags/%E5%AE%9E%E6%96%BD/" class="print-no-link">#实施</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AnyShare 7.0.6.7 实施部署手册</div>
+      <div>https://kcenter-ai.github.io/kcenter_blog/2026/03/10/AnyShare 7.0.6.7实施部署手册/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>AnyShare Team</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/kcenter_blog/2026/04/06/AnyShare%E5%BC%80%E6%94%BE%E4%B8%8E%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88/" title="AnyShare 开放与集成方案">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">AnyShare 开放与集成方案</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/kcenter_blog/js/events.js" ></script>
+<script  src="/kcenter_blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/kcenter_blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/kcenter_blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/kcenter_blog/js/boot.js" ></script>
+
+<!-- Mermaid Diagram Support -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.7/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default',
+    securityLevel: 'loose'
+  });
+</script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
