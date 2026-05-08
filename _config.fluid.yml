@@ -10,13 +10,18 @@ menu:
   - { key: "开放集成", name: "开放集成", link: "/categories/开放集成/", icon: "iconfont icon-paper-fill" }
   - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
 
-# Mermaid 图表支持
-mermaid:
-  enable: true
-  version: '9.1.7'
-  options:
-    theme: 'default'
+# Mermaid 配置
+post:
+  mermaid:
+    enable: true
+    specific: false
+    options:
+      theme: 'default'
+      securityLevel: 'loose'
+      startOnLoad: false
 
-# 自定义 CSS
-custom_css:
-  head_end: '<style>.main-content { max-width: 100% !important; } .article-content table { font-size: 14px; } .article-content table td, .article-content table th { padding: 10px 12px; } .tocbot-list .tocbot-list { display: block !important; } .toc-toggle::before { content: "▼"; } .toc-toggle-placeholder::before { content: "▶"; }</style>'
+static_prefix:
+  mermaid: https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/
+
+# 自定义 JavaScript
+custom_js: /js/mermaid-fix.js
