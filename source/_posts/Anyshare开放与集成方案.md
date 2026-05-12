@@ -6,7 +6,9 @@ categories:
 tags:
   - AnyShare
   - API
+  - SDK
   - 集成
+  - 开放融合
 ---
 
 # AnyShare 开放与集成方案

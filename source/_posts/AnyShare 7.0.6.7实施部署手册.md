@@ -2,11 +2,13 @@
 title: AnyShare 7.0.6.7 实施部署手册
 date: 2026-03-10
 categories:
-  - 实施部署
+  - 部署
 tags:
   - AnyShare
   - 部署
   - 实施
+  - 安装
+  - 运维
 description: AnyShare 7.0.6.7 实施部署指导文档，包含对象存储、部署控制台、信息安全编织、内容数据湖、主模块安装及许可配置等关键步骤。
 ---
 

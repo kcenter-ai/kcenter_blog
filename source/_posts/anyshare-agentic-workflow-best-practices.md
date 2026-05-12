@@ -2,11 +2,13 @@
 title: AnyShare Agentic WorkFlow 最佳实践
 date: 2025-05-08 10:00:00
 categories:
-  - 技术解读
+  - 最佳实践
 tags:
   - AnyShare
-  - 知识助手
+  - 智能体
   - Agentic WorkFlow
+  - 工作流
+  - 编排
   - 智能体
   - 工作流
   - 最佳实践

@@ -2,11 +2,13 @@
 title: AnyShare智能体建设技术：文档知识化流程
 date: 2026-05-08
 categories:
-  - 智能知识库
+  - 技术架构
 tags:
+  - AnyShare
   - 文档知识化
-  - 多模态解析
+  - 多模态
   - 向量化
+  - 知识处理
   - 知识图谱
   - RAG
   - AnyShare

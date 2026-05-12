@@ -2,11 +2,13 @@
 title: AnyShare MCP 集成开发使用指南
 date: 2026-04-15
 categories:
-  - 集成开发
+  - 开放集成
 tags:
   - AnyShare
   - MCP
   - AI
+  - API
+  - 协议
   - API
 description: AnyShare MCP 集成开发使用文档，面向需要把 asmcp 集成到 Agent、网关或业务系统中的开发者，提供最小可用接入步骤与联调建议。
 ---

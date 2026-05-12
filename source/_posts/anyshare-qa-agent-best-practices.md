@@ -2,11 +2,13 @@
 title: AnyShare 问答智能体最佳实践
 date: 2025-05-08 10:00:00
 categories:
-  - 技术解读
+  - 最佳实践
 tags:
   - AnyShare
-  - 知识助手
-  - 智能体
+  - QA Agent
+  - 智能问答
+  - RAG
+  - 问答
   - RAG
   - 最佳实践
 ---

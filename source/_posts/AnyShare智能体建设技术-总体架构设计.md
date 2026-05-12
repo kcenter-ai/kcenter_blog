@@ -2,11 +2,13 @@
 title: AnyShare智能体建设技术：总体架构设计
 date: 2026-05-08
 categories:
-  - 智能知识库
+  - 技术架构
 tags:
+  - AnyShare
+  - 智能体
   - Agent
-  - RAG
-  - 架构设计
+  - 架构
+  - 设计
   - AnyShare
 description: 深入解析AnyShare智能知识管理平台的RAG总体架构设计与智能问答应用框架
 ---

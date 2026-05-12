@@ -2,11 +2,13 @@
 title: ChatFlow 用户配置使用指南
 date: 2026-04-14
 categories:
-  - 智能知识库
+  - 最佳实践
 tags:
+  - AnyShare
   - Chatflow
   - 工作流
-  - 知识助手
+  - 配置
+  - 指南
 description: ChatFlow是一种面向对话场景的工作流编排模式，专为需要多步逻辑处理的交互式应用设计。通过工作流与知识助手的结合，实现复杂的对话智能体编排能力。
 ---
 

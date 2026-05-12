@@ -2,11 +2,13 @@
 title: AnyShare 智能体核心机制详解
 date: 2026-05-08 10:00:00
 categories:
-  - 技术解读
+  - 技术架构
 tags:
   - AnyShare
   - 智能体
   - Agent
+  - RAG
+  - 核心机制
   - RAG
   - 知识图谱
   - AI

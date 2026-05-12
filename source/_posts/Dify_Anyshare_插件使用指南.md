@@ -2,11 +2,13 @@
 title: Anyshare Dify 插件使用指南
 date: 2026-04-07
 categories:
-  - 智能知识库
+  - 开放集成
 tags:
-  - Anyshare
+  - AnyShare
   - Dify
   - AI
+  - 工作流
+  - 插件
 description: Anyshare Dify 插件是一款用于从 Anyshare 文档库中召回文档切片的工具插件，支持在工作流中灵活配置召回参数。
 ---
 

@@ -2,11 +2,13 @@
 title: AnyShare 图谱增强（Graph RAG）问答最佳实践
 date: 2025-05-08 10:00:00
 categories:
-  - 技术解读
+  - 最佳实践
 tags:
   - AnyShare
-  - 知识助手
   - Graph RAG
+  - 知识图谱
+  - RAG
+  - 召回
   - 知识图谱
   - 最佳实践
 ---
