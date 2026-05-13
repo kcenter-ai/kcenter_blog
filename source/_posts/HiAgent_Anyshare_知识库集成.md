@@ -141,13 +141,13 @@ http://{AnyShare地址}/api/intelli-search/v1/mf/retrieval
 | Authorization | AnyShare 长期 Token |
 | Content-Type  | 请求格式              |
 
-![请求头配置](/kcenter_blog/assets/images/HiAgent_Anyshare/image1.png)
+![请求头配置](/assets/images/HiAgent_Anyshare/image1.png)
 
 #### （3）目标文档库授权
 
 在目标文档库的路径上需要授权应用账户，如：
 
-![目标文档库授权](/kcenter_blog/assets/images/HiAgent_Anyshare/image2.png)
+![目标文档库授权](/assets/images/HiAgent_Anyshare/image2.png)
 
 #### （4）请求体配置
 
@@ -165,7 +165,7 @@ http://{AnyShare地址}/api/intelli-search/v1/mf/retrieval
 }
 ```
 
-![请求体配置](/kcenter_blog/assets/images/HiAgent_Anyshare/image3.png)
+![请求体配置](/assets/images/HiAgent_Anyshare/image3.png)
 
 ---
 
@@ -173,7 +173,7 @@ http://{AnyShare地址}/api/intelli-search/v1/mf/retrieval
 
 使用页面上的"测试"测试接口是否正常。
 
-![接口测试](/kcenter_blog/assets/images/HiAgent_Anyshare/image4.png)
+![接口测试](/assets/images/HiAgent_Anyshare/image4.png)
 
 满足以下条件即表示接口配置成功：
 - 页面上测试结果显示"成功"
@@ -191,7 +191,7 @@ http://{AnyShare地址}/api/intelli-search/v1/mf/retrieval
 
 进入知识库新建页面，在"基本配置"中，填写"知识库名称"、"知识库描述"、上传"知识库logo"等，并选择"类型"为"API接口"
 
-![知识库基本配置](/kcenter_blog/assets/images/HiAgent_Anyshare/image5.png)
+![知识库基本配置](/assets/images/HiAgent_Anyshare/image5.png)
 
 ---
 
@@ -203,7 +203,7 @@ http://{AnyShare地址}/api/intelli-search/v1/mf/retrieval
 | ------ | --------------- |
 | 数据源    | 选择前面创建的数据源      |
 | 请求参数映射 | 为数据源API请求配置参数映射 |
-![设置类型](/kcenter_blog/assets/images/HiAgent_Anyshare/image6.png)
+![设置类型](/assets/images/HiAgent_Anyshare/image6.png)
 
 完成后点击：提交
 
@@ -227,7 +227,7 @@ http://{AnyShare地址}/api/intelli-search/v1/mf/retrieval
 - 是否能够生成回答
 - 返回内容是否符合预期
 
-![知识库测试](/kcenter_blog/assets/images/HiAgent_Anyshare/image7.png)
+![知识库测试](/assets/images/HiAgent_Anyshare/image7.png)
 
 ---
 
