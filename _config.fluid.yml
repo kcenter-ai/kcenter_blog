@@ -25,3 +25,17 @@ static_prefix:
 
 # 自定义 JavaScript
 custom_js: /js/mermaid-fix.js
+
+# 页面统计
+web_analytics:
+  enable: true
+  openkounter:
+    server_url: https://open-kounter.mintimate.cn
+    path: window.location.pathname
+    ignore_local: false
+
+# 页脚统计
+footer:
+  statistics:
+    enable: true
+    source: openkounter
