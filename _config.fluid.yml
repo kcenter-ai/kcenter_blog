@@ -34,6 +34,15 @@ web_analytics:
     path: window.location.pathname
     ignore_local: false
 
+# 关于页
+about:
+  name: "KCenter"
+  intro: "KCenter 产品技术文档与实践分享"
+  icons:
+    - { class: "iconfont icon-github-fill", link: "https://github.com/kcenter-ai", tip: "GitHub" }
+    - { class: "iconfont icon-link-fill", link: "mailto:anyshare_aishu@163.com", tip: "邮箱" }
+    - { class: "iconfont icon-wechat-fill", qrcode: "/img/wechat-qr.jpg" }
+
 # 页脚统计
 footer:
   statistics:

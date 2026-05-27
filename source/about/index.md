@@ -45,3 +45,18 @@ AnyShare 开放与集成方案、API 文档等。
 
 ---
 
+## 联系我们
+
+### GitHub
+
+访问我们的 GitHub 仓库：[https://github.com/kcenter-ai](https://github.com/kcenter-ai)
+
+### 邮箱
+
+如有问题或建议，请发送邮件至：anyshare_aishu@163.com
+
+### 微信
+
+扫描下方二维码添加我们的微信：
+<img src="/kcenter_blog/img/wechat-qr.jpg" style="height:50px;width:50px;" alt="微信二维码" />
+
