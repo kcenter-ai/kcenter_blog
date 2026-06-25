@@ -34,4 +34,5 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          sed -i "s|repo: https://github.com/kcenter-ai/kcenter_blog.git|repo: https://x-access-token:${GH_TOKEN}@github.com/kcenter-ai/kcenter_blog.git|" _config.yml
           npm run deploy
