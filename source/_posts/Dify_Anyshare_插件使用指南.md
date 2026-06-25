@@ -83,7 +83,7 @@ https://your-anyshare-domain.com
 
 插件包文件：`anyshare_retrieval.difypkg`
 
-插件包下载：[anyshare_retrieval.difypkg](/kcenter_blog/assets/anyshare_retrieval.difypkg)
+插件包下载：[anyshare_retrieval.difypkg](/assets/anyshare_retrieval.difypkg)
 
 ### 安装步骤（本地文件方式）
 
@@ -121,7 +121,7 @@ https://your-anyshare-domain.com
 
 ### 离线/本地安装
 
-![](/kcenter_blog/assets/17755699874971.jpg)
+![](/assets/17755699874971.jpg)
 
 1. 从本地上传 `.difypkg` 文件
 2. 点击「上传本地文件」按钮
@@ -142,7 +142,7 @@ https://your-anyshare-domain.com
 
 4. 在工作流画布中，创建类似以下的工作流：
 
-![](/kcenter_blog/assets/17755702749519.jpg)
+![](/assets/17755702749519.jpg)
 
 ### 工作流节点说明
 
@@ -162,7 +162,7 @@ https://your-anyshare-domain.com
 
 ### 参数配置界面
 
-![](/kcenter_blog/assets/17755703873895.jpg)
+![](/assets/17755703873895.jpg)
 
 ### 主要参数说明
 
@@ -183,7 +183,7 @@ https://your-anyshare-domain.com
 
 ### 配置界面
 
-![](/kcenter_blog/assets/17755705259467.jpg)
+![](/assets/17755705259467.jpg)
 
 ### 环境变量说明
 
@@ -224,7 +224,7 @@ https://your-anyshare-domain.com
 
 ### 在输出节点中使用召回结果
 
-![](/kcenter_blog/assets/17755706235976.jpg)
+![](/assets/17755706235976.jpg)
 
 
 ## 整体流程测试
@@ -245,7 +245,7 @@ https://your-anyshare-domain.com
 
 ### 测试界面
 
-![](/kcenter_blog/assets/17755706737950.jpg)
+![](/assets/17755706737950.jpg)
 
 ---
 
@@ -257,7 +257,7 @@ https://your-anyshare-domain.com
 
 ### 结果查看界面
 
-![](/kcenter_blog/assets/17755708559592.jpg)
+![](/assets/17755708559592.jpg)
 
 ### 检查项
 
