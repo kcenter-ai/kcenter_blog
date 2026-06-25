@@ -1,0 +1,1074 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/kcenter_blog/img/fluid.png">
+  <link rel="icon" href="/kcenter_blog/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="AnyShare Team">
+  <meta name="keywords" content="KCenter, 文档管理, 技术博客">
+  
+    <meta name="description" content="1. 文档说明1.1 文档目标本文档用于指导 HiAgent 对接 AnyShare 检索接口，实现 AnyShare 作为外挂知识库接入 HiAgent 的能力。 完成集成后，HiAgent 可通过 API 调用 AnyShare 的知识召回能力，实现：  基于 AnyShare 的知识检索 AI 问答增强 企业知识复用与验证   1.2 适用场景适用于以下场景：  HiAgent 接入企业已有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HiAgent集成AnyShare知识库集成开发">
+<meta property="og:url" content="https://kcenter-ai.github.io/kcenter_blog/2026/05/12/HiAgent_Anyshare_%E7%9F%A5%E8%AF%86%E5%BA%93%E9%9B%86%E6%88%90/index.html">
+<meta property="og:site_name" content="KCenter 技术博客">
+<meta property="og:description" content="1. 文档说明1.1 文档目标本文档用于指导 HiAgent 对接 AnyShare 检索接口，实现 AnyShare 作为外挂知识库接入 HiAgent 的能力。 完成集成后，HiAgent 可通过 API 调用 AnyShare 的知识召回能力，实现：  基于 AnyShare 的知识检索 AI 问答增强 企业知识复用与验证   1.2 适用场景适用于以下场景：  HiAgent 接入企业已有">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/images/HiAgent_Anyshare/image1.png">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/images/HiAgent_Anyshare/image2.png">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/images/HiAgent_Anyshare/image3.png">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/images/HiAgent_Anyshare/image4.png">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/images/HiAgent_Anyshare/image5.png">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/images/HiAgent_Anyshare/image6.png">
+<meta property="og:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/images/HiAgent_Anyshare/image7.png">
+<meta property="article:published_time" content="2026-05-12T23:40:00.000Z">
+<meta property="article:modified_time" content="2026-06-25T14:23:16.555Z">
+<meta property="article:author" content="AnyShare Team">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="AnyShare">
+<meta property="article:tag" content="HiAgent">
+<meta property="article:tag" content="知识库">
+<meta property="article:tag" content="集成">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kcenter-ai.github.io/kcenter_blog/assets/images/HiAgent_Anyshare/image1.png">
+  
+  
+  
+  <title>HiAgent集成AnyShare知识库集成开发 - KCenter 技术博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/kcenter_blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/kcenter_blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/kcenter_blog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kcenter-ai.github.io","root":"/kcenter_blog/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/kcenter_blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/kcenter_blog/js/utils.js" ></script>
+  <script  src="/kcenter_blog/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/kcenter_blog/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/kcenter_blog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="HiAgent集成AnyShare知识库集成开发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-12 23:40" pubdate>
+          2026年5月12日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">HiAgent集成AnyShare知识库集成开发</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-文档说明"><a href="#1-文档说明" class="headerlink" title="1. 文档说明"></a>1. 文档说明</h2><h3 id="1-1-文档目标"><a href="#1-1-文档目标" class="headerlink" title="1.1 文档目标"></a>1.1 文档目标</h3><p>本文档用于指导 HiAgent 对接 AnyShare 检索接口，实现 AnyShare 作为外挂知识库接入 HiAgent 的能力。</p>
+<p>完成集成后，HiAgent 可通过 API 调用 AnyShare 的知识召回能力，实现：</p>
+<ul>
+<li>基于 AnyShare 的知识检索</li>
+<li>AI 问答增强</li>
+<li>企业知识复用与验证</li>
+</ul>
+<hr>
+<h3 id="1-2-适用场景"><a href="#1-2-适用场景" class="headerlink" title="1.2 适用场景"></a>1.2 适用场景</h3><p>适用于以下场景：</p>
+<ul>
+<li>HiAgent 接入企业已有 AnyShare 知识体系</li>
+<li>使用 AnyShare 作为统一知识源</li>
+<li>验证 API 模式下的知识召回能力</li>
+</ul>
+<hr>
+<h3 id="1-3-当前方案说明"><a href="#1-3-当前方案说明" class="headerlink" title="1.3 当前方案说明"></a>1.3 当前方案说明</h3><p>当前方案基于：</p>
+<ul>
+<li>HiAgent API 数据源模式 + AnyShare 提供的集成的召回接口intelli-search&#x2F;v1&#x2F;mf&#x2F;retrieval</li>
+</ul>
+<hr>
+<h1 id="2-集成架构"><a href="#2-集成架构" class="headerlink" title="2. 集成架构"></a>2. 集成架构</h1><h2 id="2-1-架构说明"><a href="#2-1-架构说明" class="headerlink" title="2.1 架构说明"></a>2.1 架构说明</h2><p>HiAgent 通过 API 调用 AnyShare 提供的知识召回接口，实现外挂知识库接入。</p>
+<p>整体调用流程如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs text">用户提问<br>   ↓<br>HiAgent<br>   ↓（API调用）<br>AnyShare Retrieval API<br>   ↓<br>返回召回结果<br>   ↓<br>HiAgent生成回答<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-2-AnyShare-召回接口"><a href="#2-2-AnyShare-召回接口" class="headerlink" title="2.2 AnyShare 召回接口"></a>2.2 AnyShare 召回接口</h2><p>AnyShare 提供的接口如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">intelli-search/v1/mf/retrieval<br></code></pre></td></tr></table></figure>
+
+<p>该接口用于完成知识检索与内容召回。</p>
+<hr>
+<h1 id="3-前置准备"><a href="#3-前置准备" class="headerlink" title="3. 前置准备"></a>3. 前置准备</h1><p>在开始配置前，请确认以下内容已完成。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AnyShare 服务</td>
+<td>已正常部署并可访问</td>
+</tr>
+<tr>
+<td>HiAgent 服务</td>
+<td>已正常部署</td>
+</tr>
+<tr>
+<td>Retrieval API</td>
+<td>已开放访问</td>
+</tr>
+<tr>
+<td>应用账户</td>
+<td>已创建</td>
+</tr>
+<tr>
+<td>长期 Token</td>
+<td>已生成</td>
+</tr>
+<tr>
+<td>文档目录权限</td>
+<td>已授权给应用账户</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="3-1-应用账户说明"><a href="#3-1-应用账户说明" class="headerlink" title="3.1 应用账户说明"></a>3.1 应用账户说明</h2><p>示例中在AnyShare召回接口的”请求头”中配置的是AnyShare应用账号（账号类型为：令牌认证账户）的长期token</p>
+<p>该账户需要具备：</p>
+<ul>
+<li>检索目录访问权限</li>
+<li>文档读取权限<br>否则可能导致召回结果为空。</li>
+</ul>
+<hr>
+<h1 id="4-HiAgent-配置步骤"><a href="#4-HiAgent-配置步骤" class="headerlink" title="4. HiAgent 配置步骤"></a>4. HiAgent 配置步骤</h1><h2 id="4-1-新建知识库数据源"><a href="#4-1-新建知识库数据源" class="headerlink" title="4.1 新建知识库数据源"></a>4.1 新建知识库数据源</h2><h3 id="4-1-1-新建数据源"><a href="#4-1-1-新建数据源" class="headerlink" title="4.1.1 新建数据源"></a>4.1.1 新建数据源</h3><p>进入：HiAgent → 数据源管理 → 新建数据源</p>
+<hr>
+<h3 id="4-1-2-配置-AnyShare-召回接口"><a href="#4-1-2-配置-AnyShare-召回接口" class="headerlink" title="4.1.2 配置 AnyShare 召回接口"></a>4.1.2 配置 AnyShare 召回接口</h3><h4 id="（1）请求地址配置"><a href="#（1）请求地址配置" class="headerlink" title="（1）请求地址配置"></a>（1）请求地址配置</h4><p>填写 AnyShare 召回接口地址，例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">http://&#123;AnyShare地址&#125;/api/intelli-search/v1/mf/retrieval<br></code></pre></td></tr></table></figure>
+
+<h4 id="（2）请求头配置"><a href="#（2）请求头配置" class="headerlink" title="（2）请求头配置"></a>（2）请求头配置</h4><p>在”请求头”中配置鉴权信息。示例：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;Authorization&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Bearer xxxxxxxxx&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;Content-Type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;application/json&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Authorization</td>
+<td>AnyShare 长期 Token</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>请求格式</td>
+</tr>
+</tbody></table>
+<p><img src="/kcenter_blog/assets/images/HiAgent_Anyshare/image1.png" srcset="/kcenter_blog/img/loading.gif" lazyload alt="请求头配置"></p>
+<h4 id="（3）目标文档库授权"><a href="#（3）目标文档库授权" class="headerlink" title="（3）目标文档库授权"></a>（3）目标文档库授权</h4><p>在目标文档库的路径上需要授权应用账户，如：</p>
+<p><img src="/kcenter_blog/assets/images/HiAgent_Anyshare/image2.png" srcset="/kcenter_blog/img/loading.gif" lazyload alt="目标文档库授权"></p>
+<h4 id="（4）请求体配置"><a href="#（4）请求体配置" class="headerlink" title="（4）请求体配置"></a>（4）请求体配置</h4><p>配置请求体，其中”API接口认证配置.类型”选”无认证”，因在”请求头”中已经配置了AnyShare 的长期账户 token，这里就不需要再配置认证信息。<br>请求体示例：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;路应该怎么修&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;doc&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><br>	  <span class="hljs-attr">&quot;top_k&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><br>	  <span class="hljs-attr">&quot;score+threshold&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">0.5</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;timeout&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">30000</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/kcenter_blog/assets/images/HiAgent_Anyshare/image3.png" srcset="/kcenter_blog/img/loading.gif" lazyload alt="请求体配置"></p>
+<hr>
+<h3 id="4-1-3-接口测试"><a href="#4-1-3-接口测试" class="headerlink" title="4.1.3 接口测试"></a>4.1.3 接口测试</h3><p>使用页面上的”测试”测试接口是否正常。</p>
+<p><img src="/kcenter_blog/assets/images/HiAgent_Anyshare/image4.png" srcset="/kcenter_blog/img/loading.gif" lazyload alt="接口测试"></p>
+<p>满足以下条件即表示接口配置成功：</p>
+<ul>
+<li>页面上测试结果显示”成功”</li>
+<li>返回结果中包含召回数据</li>
+<li>无鉴权失败信息</li>
+<li>无参数格式错误</li>
+</ul>
+<p>验证通过后点击：”确定”，完成数据源创建。</p>
+<hr>
+<h2 id="4-2-新建知识库"><a href="#4-2-新建知识库" class="headerlink" title="4.2 新建知识库"></a>4.2 新建知识库</h2><h3 id="4-2-1-知识库”基本配置”"><a href="#4-2-1-知识库”基本配置”" class="headerlink" title="4.2.1 知识库”基本配置”"></a>4.2.1 知识库”基本配置”</h3><p>进入知识库新建页面，在”基本配置”中，填写”知识库名称”、”知识库描述”、上传”知识库logo”等，并选择”类型”为”API接口”</p>
+<p><img src="/kcenter_blog/assets/images/HiAgent_Anyshare/image5.png" srcset="/kcenter_blog/img/loading.gif" lazyload alt="知识库基本配置"></p>
+<hr>
+<h3 id="4-2-2-知识库”设置类型”"><a href="#4-2-2-知识库”设置类型”" class="headerlink" title="4.2.2 知识库”设置类型”"></a>4.2.2 知识库”设置类型”</h3><p>在”设置类型”中完成以下配置：</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>配置说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据源</td>
+<td>选择前面创建的数据源</td>
+</tr>
+<tr>
+<td>请求参数映射</td>
+<td>为数据源API请求配置参数映射</td>
+</tr>
+<tr>
+<td><img src="/kcenter_blog/assets/images/HiAgent_Anyshare/image6.png" srcset="/kcenter_blog/img/loading.gif" lazyload alt="设置类型"></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>完成后点击：提交</p>
+<p><em>注意：由于 HiAgent 与 AnyShare 的参数结构可能存在差异，数据源API参数与HiAgent参数结构不兼容时，需要另外开发参数适配工具。</em></p>
+<hr>
+<h3 id="4-2-3-知识库测试"><a href="#4-2-3-知识库测试" class="headerlink" title="4.2.3 知识库测试"></a>4.2.3 知识库测试</h3><p>知识库创建完成后，可通过 HiAgent 发起测试问题。</p>
+<p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">&quot;合同审批流程是什么？&quot;<br></code></pre></td></tr></table></figure>
+
+<p>验证：</p>
+<ul>
+<li>是否能够正常召回知识</li>
+<li>是否能够生成回答</li>
+<li>返回内容是否符合预期</li>
+</ul>
+<p><img src="/kcenter_blog/assets/images/HiAgent_Anyshare/image7.png" srcset="/kcenter_blog/img/loading.gif" lazyload alt="知识库测试"></p>
+<hr>
+<h1 id="5-常见问题（FAQ）"><a href="#5-常见问题（FAQ）" class="headerlink" title="5. 常见问题（FAQ）"></a>5. 常见问题（FAQ）</h1><h2 id="5-1-接口返回-401"><a href="#5-1-接口返回-401" class="headerlink" title="5.1 接口返回 401"></a>5.1 接口返回 401</h2><p>请检查：</p>
+<ul>
+<li>Token 是否失效</li>
+<li>Authorization 格式是否正确</li>
+<li>应用账户是否存在</li>
+</ul>
+<hr>
+<h2 id="5-2-无召回结果"><a href="#5-2-无召回结果" class="headerlink" title="5.2 无召回结果"></a>5.2 无召回结果</h2><p>请检查：</p>
+<ul>
+<li>应用账户是否具备目录权限</li>
+<li>检索目录中是否存在文档</li>
+<li>文档是否已建立索引</li>
+</ul>
+<hr>
+<h2 id="5-3-接口测试失败"><a href="#5-3-接口测试失败" class="headerlink" title="5.3 接口测试失败"></a>5.3 接口测试失败</h2><p>请检查：</p>
+<ul>
+<li>API 地址是否可访问</li>
+<li>网络是否连通</li>
+<li>请求参数格式是否正确</li>
+</ul>
+<hr>
+<h2 id="5-4-参数映射失败"><a href="#5-4-参数映射失败" class="headerlink" title="5.4 参数映射失败"></a>5.4 参数映射失败</h2><p>当前 HiAgent 与 AnyShare 的参数结构可能存在差异。</p>
+<p>复杂场景下建议增加：</p>
+<ul>
+<li>参数转换服务</li>
+<li>中间适配层</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/kcenter_blog/categories/%E5%BC%80%E6%94%BE%E9%9B%86%E6%88%90/" class="category-chain-item">开放集成</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/kcenter_blog/tags/AnyShare/" class="print-no-link">#AnyShare</a>
+      
+        <a href="/kcenter_blog/tags/HiAgent/" class="print-no-link">#HiAgent</a>
+      
+        <a href="/kcenter_blog/tags/%E7%9F%A5%E8%AF%86%E5%BA%93/" class="print-no-link">#知识库</a>
+      
+        <a href="/kcenter_blog/tags/API/" class="print-no-link">#API</a>
+      
+        <a href="/kcenter_blog/tags/%E9%9B%86%E6%88%90/" class="print-no-link">#集成</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>HiAgent集成AnyShare知识库集成开发</div>
+      <div>https://kcenter-ai.github.io/kcenter_blog/2026/05/12/HiAgent_Anyshare_知识库集成/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>AnyShare Team</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/kcenter_blog/2026/05/08/AnyShare%E6%99%BA%E8%83%BD%E4%BD%93%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6/" title="AnyShare 智能体核心机制详解">
+                        <span class="hidden-mobile">AnyShare 智能体核心机制详解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default","securityLevel":"loose","startOnLoad":false});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="openkounter-site-pv-container" style="display: none">
+        总访问量 
+        <span id="openkounter-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="openkounter-site-uv-container" style="display: none">
+        总访客数 
+        <span id="openkounter-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/kcenter_blog/js/events.js" ></script>
+<script  src="/kcenter_blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/kcenter_blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/kcenter_blog/js/openkounter.js" ></script>
+
+  <script  src="/kcenter_blog/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/kcenter_blog/js/mermaid-fix.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/kcenter_blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

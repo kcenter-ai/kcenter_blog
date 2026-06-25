@@ -1,0 +1,1020 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/kcenter_blog/img/fluid.png">
+  <link rel="icon" href="/kcenter_blog/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="AnyShare Team">
+  <meta name="keywords" content="KCenter, 文档管理, 技术博客">
+  
+    <meta name="description" content="AnyShare 问答智能体最佳实践AnyShare 问答智能体是基于检索增强生成（RAG）技术构建的智能问答系统，通过结合企业私域知识库与大语言模型能力，实现精准、可解释的知识问答服务。本文将从工作流程、FAQ匹配、文档检索、Agent配置、性能优化等方面，详细介绍问答智能体的最佳实践。 6.1.1 工作流程问答智能体的核心工作流程涵盖从用户 query 输入到最终答案输出的完整链路。系统通过多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AnyShare 问答智能体最佳实践">
+<meta property="og:url" content="https://kcenter-ai.github.io/kcenter_blog/2025/05/08/anyshare-qa-agent-best-practices/index.html">
+<meta property="og:site_name" content="KCenter 技术博客">
+<meta property="og:description" content="AnyShare 问答智能体最佳实践AnyShare 问答智能体是基于检索增强生成（RAG）技术构建的智能问答系统，通过结合企业私域知识库与大语言模型能力，实现精准、可解释的知识问答服务。本文将从工作流程、FAQ匹配、文档检索、Agent配置、性能优化等方面，详细介绍问答智能体的最佳实践。 6.1.1 工作流程问答智能体的核心工作流程涵盖从用户 query 输入到最终答案输出的完整链路。系统通过多">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-08T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-25T14:23:16.555Z">
+<meta property="article:author" content="AnyShare Team">
+<meta property="article:tag" content="AnyShare">
+<meta property="article:tag" content="QA Agent">
+<meta property="article:tag" content="RAG">
+<meta property="article:tag" content="智能问答">
+<meta property="article:tag" content="最佳实践">
+<meta property="article:tag" content="问答">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>AnyShare 问答智能体最佳实践 - KCenter 技术博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/kcenter_blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/kcenter_blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/kcenter_blog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kcenter-ai.github.io","root":"/kcenter_blog/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/kcenter_blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/kcenter_blog/js/utils.js" ></script>
+  <script  src="/kcenter_blog/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/kcenter_blog/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/kcenter_blog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/kcenter_blog/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/kcenter_blog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AnyShare 问答智能体最佳实践"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-08 10:00" pubdate>
+          2025年5月8日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AnyShare 问答智能体最佳实践</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="AnyShare-问答智能体最佳实践"><a href="#AnyShare-问答智能体最佳实践" class="headerlink" title="AnyShare 问答智能体最佳实践"></a>AnyShare 问答智能体最佳实践</h1><p>AnyShare 问答智能体是基于检索增强生成（RAG）技术构建的智能问答系统，通过结合企业私域知识库与大语言模型能力，实现精准、可解释的知识问答服务。本文将从工作流程、FAQ匹配、文档检索、Agent配置、性能优化等方面，详细介绍问答智能体的最佳实践。</p>
+<h2 id="6-1-1-工作流程"><a href="#6-1-1-工作流程" class="headerlink" title="6.1.1 工作流程"></a>6.1.1 工作流程</h2><p>问答智能体的核心工作流程涵盖从用户 query 输入到最终答案输出的完整链路。系统通过多模块协同，实现高效准确的智能问答。</p>
+<p><strong>整体流程架构：</strong></p>
+<ol>
+<li><strong>Query 预处理</strong>：接收用户问题，进行意图识别与关键词提取</li>
+<li><strong>知识召回</strong>：基于向量检索与关键词检索双路召回，获取候选文档切片</li>
+<li><strong>重排序处理</strong>：通过 Rerank 模型对召回结果进行相关性排序</li>
+<li><strong>答案生成</strong>：将排序后的文档切片作为上下文，输入大语言模型生成最终答案</li>
+<li><strong>结果输出</strong>：返回答案及对应的文档来源信息</li>
+</ol>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs erlang">用户 <span class="hljs-keyword">query</span> → 预处理 → 向量检索 + 关键词检索 → 结果融合 → Rerank 重排 → LLM 生成 → 答案输出<br></code></pre></td></tr></table></figure>
+
+<p><strong>关键技术要点：</strong></p>
+<ul>
+<li><strong>混合检索策略</strong>：结合稀疏检索（关键词匹配）与稠密检索（语义向量），兼顾召回率与精准度</li>
+<li><strong>切片上下文扩展</strong>：根据召回切片的前后相邻切片补充上下文信息，提升答案完整性</li>
+<li><strong>流式输出优化</strong>：调整 LLM 块输出模式，避免阻塞实现实时流式返回</li>
+</ul>
+<h2 id="6-1-2-FAQ-匹配实现和调优"><a href="#6-1-2-FAQ-匹配实现和调优" class="headerlink" title="6.1.2 FAQ 匹配实现和调优"></a>6.1.2 FAQ 匹配实现和调优</h2><p>FAQ 匹配是问答智能体的核心能力之一，通过结构化的问题答案对实现精准匹配。</p>
+<h3 id="FAQ-匹配原理"><a href="#FAQ-匹配原理" class="headerlink" title="FAQ 匹配原理"></a>FAQ 匹配原理</h3><p>FAQ 匹配基于相似度计算实现：系统将用户问题与 FAQ 库中的问题进行匹配，计算语义相似度并返回最匹配的答案。</p>
+<h3 id="FAQ-配置流程"><a href="#FAQ-配置流程" class="headerlink" title="FAQ 配置流程"></a>FAQ 配置流程</h3><ol>
+<li><strong>FAQ 库构建</strong>：整理业务场景中的常见问题与标准答案</li>
+<li><strong>问题向量化</strong>：将 FAQ 问题通过 Embedding 模型转换为向量表示</li>
+<li><strong>相似度匹配</strong>：用户 query 向量化后与 FAQ 向量库进行相似度计算</li>
+<li><strong>阈值过滤</strong>：设置相似度阈值，过滤低匹配度结果</li>
+</ol>
+<h3 id="调优策略"><a href="#调优策略" class="headerlink" title="调优策略"></a>调优策略</h3><p><strong>同义词扩展</strong>：将用户 query 中的同义词进行替换扩展，提升召回覆盖率。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 同义词查询函数异步化优化示例</span><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">synonym_query_async</span>(<span class="hljs-params">query</span>):<br>    synonyms = <span class="hljs-keyword">await</span> get_synonyms(query)<br>    expanded_query = query + <span class="hljs-string">&quot; &quot;</span> + <span class="hljs-string">&quot; &quot;</span>.join(synonyms)<br>    <span class="hljs-keyword">return</span> expanded_query<br></code></pre></td></tr></table></figure>
+
+<p><strong>答案提取优化</strong>：对 FAQ 匹配中的正文答案提取函数进行异步化重构，避免 I&#x2F;O 阻塞。</p>
+<p><strong>匹配阈值调整</strong>：根据业务场景调整相似度阈值平衡精准度与召回率。</p>
+<h2 id="6-1-3-文档检索实现和调优"><a href="#6-1-3-文档检索实现和调优" class="headerlink" title="6.1.3 文档检索实现和调优"></a>6.1.3 文档检索实现和调优</h2><p>文档检索是问答智能体的另一核心能力，通过从文档库中召回相关文档切片为 LLM 提供问答依据。</p>
+<h3 id="文档检索流程"><a href="#文档检索流程" class="headerlink" title="文档检索流程"></a>文档检索流程</h3><ol>
+<li><strong>Query 向量化</strong>：将用户问题转换为语义向量</li>
+<li><strong>多路召回</strong>：<ul>
+<li>向量召回：通过向量相似度检索获取语义相关切片</li>
+<li>关键词召回：通过倒排索引获取字面匹配切片</li>
+</ul>
+</li>
+<li><strong>结果融合</strong>：合并多路召回结果，按权重计算综合得分</li>
+<li><strong>Rerank 重排</strong>：对融合结果进行相关性重排序</li>
+<li><strong>上下文补充</strong>：根据需要补充相邻切片上下文信息</li>
+</ol>
+<h3 id="关键配置参数"><a href="#关键配置参数" class="headerlink" title="关键配置参数"></a>关键配置参数</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>建议值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>top_n</td>
+<td>召回切片数量上限</td>
+<td>50</td>
+</tr>
+<tr>
+<td>dense_min_score</td>
+<td>向量召回分数阈值</td>
+<td>根据实际效果调整</td>
+</tr>
+<tr>
+<td>sparse_min_score</td>
+<td>关键词召回分数阈值</td>
+<td>根据实际效果调整</td>
+</tr>
+<tr>
+<td>min_score</td>
+<td>Rerank 后最终分数阈值</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>slice_max_num</td>
+<td>最后使用的最大切片数量</td>
+<td>30</td>
+</tr>
+<tr>
+<td>before_slice_num</td>
+<td>向前召回的切片数</td>
+<td>1</td>
+</tr>
+<tr>
+<td>after_slice_num</td>
+<td>向后召回的切片数</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h3 id="切片召回实现"><a href="#切片召回实现" class="headerlink" title="切片召回实现"></a>切片召回实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">f1_main</span>(<span class="hljs-params">as_ctx: <span class="hljs-built_in">dict</span>, query: <span class="hljs-built_in">str</span>, query_slices: <span class="hljs-built_in">list</span></span>) -&gt; <span class="hljs-type">Union</span>[<span class="hljs-built_in">list</span>, <span class="hljs-built_in">str</span>]:<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    关键字向量双路召回+权重过滤</span><br><span class="hljs-string">    1. 获取query向量</span><br><span class="hljs-string">    2. 带向量和关键字调用slice-search</span><br><span class="hljs-string">    3. 按权重过滤</span><br><span class="hljs-string">    4. 仅保留文本，去除无关信息</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 获取query向量</span><br>    embeddings = <span class="hljs-keyword">await</span> embedding(query)<br><br>    <span class="hljs-comment"># 构建搜索请求</span><br>    data = &#123;<br>        <span class="hljs-string">&quot;limit&quot;</span>: top_n,<br>        <span class="hljs-string">&quot;text&quot;</span>: query,<br>        <span class="hljs-string">&quot;embedding&quot;</span>: embeddings,<br>        <span class="hljs-string">&quot;ranges&quot;</span>: ranges,<br>        <span class="hljs-string">&quot;item_output_type&quot;</span>: [<span class="hljs-string">&quot;doc&quot;</span>],<br>    &#125;<br><br>    <span class="hljs-comment"># 执行切片搜索</span><br>    search_res = <span class="hljs-keyword">await</span> slice_search(data)<br><br>    <span class="hljs-comment"># 获取稠密和稀疏结果</span><br>    dense_results = search_res[<span class="hljs-string">&quot;doc&quot;</span>].get(<span class="hljs-string">&quot;dense_results&quot;</span>, [])<br>    sparse_results = search_res[<span class="hljs-string">&quot;doc&quot;</span>].get(<span class="hljs-string">&quot;sparse_results&quot;</span>, [])<br><br>    <span class="hljs-comment"># 融合结果</span><br>    res = merge_result(dense_results, sparse_results)<br><br>    <span class="hljs-keyword">return</span> res<br></code></pre></td></tr></table></figure>
+
+<h3 id="上下文补充策略"><a href="#上下文补充策略" class="headerlink" title="上下文补充策略"></a>上下文补充策略</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">f3_main</span>(<span class="hljs-params">as_ctx: <span class="hljs-built_in">dict</span>, slices: <span class="hljs-built_in">list</span></span>) -&gt; <span class="hljs-type">Union</span>[<span class="hljs-built_in">list</span>, <span class="hljs-built_in">str</span>]:<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    补充切片上下文（调用大模型前最后一个节点）</span><br><span class="hljs-string">    1. 计算上下文切片数量</span><br><span class="hljs-string">    2. 调用 slicefetch</span><br><span class="hljs-string">    3. 组装大模型文本</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> slices:<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span><br><br>    slices.sort(key=<span class="hljs-keyword">lambda</span> x: x[<span class="hljs-string">&quot;score&quot;</span>], reverse=<span class="hljs-literal">True</span>)<br><br>    <span class="hljs-comment"># 如果切片数量足够，直接使用</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(slices) &gt;= slice_max_num:<br>        <span class="hljs-keyword">return</span> gen_llm_content(slices[:slice_max_num], [])<br><br>    <span class="hljs-comment"># 计算需要补充的上下文数量</span><br>    diff = slice_max_num - <span class="hljs-built_in">len</span>(slices)<br>    add_num_per_slice = before_slice_num + after_slice_num<br><br>    <span class="hljs-keyword">if</span> add_num_per_slice == <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">return</span> gen_llm_content(slices, [])<br><br>    add_num = <span class="hljs-built_in">int</span>(diff / add_num_per_slice)<br><br>    <span class="hljs-comment"># 调用 slicefetch 获取上下文</span><br>    data = &#123;<br>        <span class="hljs-string">&quot;index&quot;</span>: <span class="hljs-string">&quot;anyshare_bot&quot;</span>,<br>        <span class="hljs-string">&quot;doc_info&quot;</span>: [<br>            &#123;<br>                <span class="hljs-string">&quot;docid&quot;</span>: x[<span class="hljs-string">&quot;belong_doc_id&quot;</span>],<br>                <span class="hljs-string">&quot;segmentid&quot;</span>: x[<span class="hljs-string">&quot;segment_id&quot;</span>],<br>                <span class="hljs-string">&quot;before_step&quot;</span>: before_slice_num,<br>                <span class="hljs-string">&quot;after_step&quot;</span>: after_slice_num,<br>            &#125;<br>            <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> slices[:add_num]<br>        ],<br>    &#125;<br><br>    fetch_res = <span class="hljs-keyword">await</span> slice_fetch(data)<br>    content_slices = fetch_res.get(<span class="hljs-string">&quot;result&quot;</span>, [])<br><br>    <span class="hljs-keyword">return</span> gen_llm_content(slices, content_slices)<br></code></pre></td></tr></table></figure>
+
+<h2 id="6-1-4-Agent-输入输出规范"><a href="#6-1-4-Agent-输入输出规范" class="headerlink" title="6.1.4 Agent 输入输出规范"></a>6.1.4 Agent 输入输出规范</h2><p>在 AnyShare 智能体配置中，Agent 的输入输出需遵循规范格式以确保正确显示和交互。</p>
+<h3 id="主控-Agent-返回结构"><a href="#主控-Agent-返回结构" class="headerlink" title="主控 Agent 返回结构"></a>主控 Agent 返回结构</h3><p>若想在 AnyShare 智能体中正确显示主控 Agent 的返回结果，需注意其返回结构：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">&#123;<br>    <span class="hljs-string">&quot;answer&quot;</span>: <span class="hljs-string">&quot;具体答案内容&quot;</span>,<br>    <span class="hljs-string">&quot;source_docs&quot;</span>: [<span class="hljs-string">&quot;文档1&quot;</span>, <span class="hljs-string">&quot;文档2&quot;</span>]  <span class="hljs-comment"># 可选的来源信息</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="技能-Agent-返回结构"><a href="#技能-Agent-返回结构" class="headerlink" title="技能 Agent 返回结构"></a>技能 Agent 返回结构</h3><p>技能 Agent 被主控 Agent 调用以协助完成特定任务，其返回结构需与主控 Agent 的预期格式一致：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">&#123;<br>    <span class="hljs-string">&quot;result&quot;</span>: <span class="hljs-string">&quot;技能执行结果&quot;</span>,<br>    <span class="hljs-string">&quot;status&quot;</span>: <span class="hljs-string">&quot;success&quot;</span>  <span class="hljs-comment"># 或 &quot;failed&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="6-1-5-功能场景配置实现"><a href="#6-1-5-功能场景配置实现" class="headerlink" title="6.1.5 功能场景配置实现"></a>6.1.5 功能场景配置实现</h2><h3 id="场景分类配置"><a href="#场景分类配置" class="headerlink" title="场景分类配置"></a>场景分类配置</h3><p>根据业务需求，可配置不同类型的问答场景：</p>
+<ol>
+<li><strong>通用问答</strong>：覆盖各类常见问题的智能问答</li>
+<li><strong>专业领域问答</strong>：针对特定业务领域的深度问答</li>
+<li><strong>FAQ 匹配问答</strong>：基于结构化问题答案对的精准匹配</li>
+</ol>
+<h3 id="主题域过滤-Agent"><a href="#主题域过滤-Agent" class="headerlink" title="主题域过滤 Agent"></a>主题域过滤 Agent</h3><p>对于需要区分业务主题的场景，可配置主题域过滤 Agent：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">theme_filter_agent</span>(<span class="hljs-params">query, as_ctx, query_slices</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    根据主题域关键词过滤召回文档</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    res = []<br>    <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> query_slices:<br>        has = <span class="hljs-literal">True</span><br>        <span class="hljs-keyword">for</span> vv <span class="hljs-keyword">in</span> theme_keywords:<br>            <span class="hljs-keyword">if</span> vv <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> v[<span class="hljs-string">&quot;belong_doc_path&quot;</span>]:<br>                has = <span class="hljs-literal">False</span><br>                <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">if</span> has:<br>            res.append(v)<br><br>    <span class="hljs-keyword">return</span> res<br></code></pre></td></tr></table></figure>
+
+<h3 id="反问策略"><a href="#反问策略" class="headerlink" title="反问策略"></a>反问策略</h3><p>当无法确定用户意图时，智能体可主动反问澄清：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 根据有无关键词进行反问</span><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> has_clear_intent:<br>    ask_user_clarify()  <span class="hljs-comment"># 简短礼貌地反问用户，让用户说明具体场景</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-1-6-智能体性能优化实践"><a href="#6-1-6-智能体性能优化实践" class="headerlink" title="6.1.6 智能体性能优化实践"></a>6.1.6 智能体性能优化实践</h2><h3 id="同步函数异步化"><a href="#同步函数异步化" class="headerlink" title="同步函数异步化"></a>同步函数异步化</h3><p>为提升系统并发处理能力，对关键函数进行异步化改造：</p>
+<p><strong>同义词查询函数优化</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 修改之前（同步）</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_synonyms</span>(<span class="hljs-params">query</span>):<br>    <span class="hljs-comment"># 同步调用</span><br>    <span class="hljs-keyword">return</span> synonyms<br><br><span class="hljs-comment"># 修改之后（异步）</span><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_synonyms_async</span>(<span class="hljs-params">query</span>):<br>    <span class="hljs-comment"># 异步调用</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> async_get_synonyms(query)<br></code></pre></td></tr></table></figure>
+
+<p><strong>FAQ 答案提取函数优化</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 修改之前（同步）</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">extract_answer_from_faq</span>(<span class="hljs-params">faq_content</span>):<br>    <span class="hljs-keyword">return</span> answer<br><br><span class="hljs-comment"># 修改之后（异步）</span><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">extract_answer_from_faq_async</span>(<span class="hljs-params">faq_content</span>):<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> async_extract(faq_content)<br></code></pre></td></tr></table></figure>
+
+<h3 id="LLM-块输出模式优化"><a href="#LLM-块输出模式优化" class="headerlink" title="LLM 块输出模式优化"></a>LLM 块输出模式优化</h3><p><strong>文档检索 LLM 块优化</strong>：从专家模式调整为 Basic 模式，支持答案内容的实时流式返回。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 修改之前：专家模式</span><br>LLM_Expert_Block: config=&#123;<span class="hljs-string">&quot;mode&quot;</span>: <span class="hljs-string">&quot;expert&quot;</span>&#125;<br><br><span class="hljs-comment"># 修改之后：Basic 模式（支持流式输出）</span><br>LLM_Basic_Block: config=&#123;<span class="hljs-string">&quot;mode&quot;</span>: <span class="hljs-string">&quot;basic&quot;</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="流式输出阻塞问题解决"><a href="#流式输出阻塞问题解决" class="headerlink" title="流式输出阻塞问题解决"></a>流式输出阻塞问题解决</h3><p>LLM 块后的函数会等待 LLM 块执行完毕后才会进行执行，这将阻塞 LLM 块的流式返回。务必去除此类函数块以确保流畅的用户体验。</p>
+<p><strong>问题场景</strong>：在 LLM 块之后配置了同步函数，导致流式输出被阻塞。</p>
+<p><strong>解决方案</strong>：移除 LLM 块后的阻塞性函数，或将其移至异步处理流程中。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>问答智能体的最佳实践涵盖从工作流程设计到性能优化的完整环节。通过合理的 FAQ 匹配策略、文档检索调优、规范的 Agent 配置以及性能优化措施，可以构建高效、准确的智能问答系统。在实际应用中，需根据业务场景特点灵活调整各项参数，持续迭代优化以提升用户体验。</p>
+<hr>
+<p><strong>参考来源</strong>：<a target="_blank" rel="noopener" href="https://www.aishu.cn/">AnyShare Family 7 知识助手技术原理解读及最佳实践 - 第6章 最佳实践</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/kcenter_blog/categories/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="category-chain-item">最佳实践</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/kcenter_blog/tags/AnyShare/" class="print-no-link">#AnyShare</a>
+      
+        <a href="/kcenter_blog/tags/RAG/" class="print-no-link">#RAG</a>
+      
+        <a href="/kcenter_blog/tags/QA-Agent/" class="print-no-link">#QA Agent</a>
+      
+        <a href="/kcenter_blog/tags/%E6%99%BA%E8%83%BD%E9%97%AE%E7%AD%94/" class="print-no-link">#智能问答</a>
+      
+        <a href="/kcenter_blog/tags/%E9%97%AE%E7%AD%94/" class="print-no-link">#问答</a>
+      
+        <a href="/kcenter_blog/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="print-no-link">#最佳实践</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AnyShare 问答智能体最佳实践</div>
+      <div>https://kcenter-ai.github.io/kcenter_blog/2025/05/08/anyshare-qa-agent-best-practices/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>AnyShare Team</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/kcenter_blog/2026/03/10/AnyShare%207.0.6.7%E5%AE%9E%E6%96%BD%E9%83%A8%E7%BD%B2%E6%89%8B%E5%86%8C/" title="AnyShare 7.0.6.7 实施部署手册">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">AnyShare 7.0.6.7 实施部署手册</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/kcenter_blog/2025/05/08/anyshare-graph-rag-best-practices/" title="AnyShare 图谱增强（Graph RAG）问答最佳实践">
+                        <span class="hidden-mobile">AnyShare 图谱增强（Graph RAG）问答最佳实践</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default","securityLevel":"loose","startOnLoad":false});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="openkounter-site-pv-container" style="display: none">
+        总访问量 
+        <span id="openkounter-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="openkounter-site-uv-container" style="display: none">
+        总访客数 
+        <span id="openkounter-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/kcenter_blog/js/events.js" ></script>
+<script  src="/kcenter_blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/kcenter_blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/kcenter_blog/js/openkounter.js" ></script>
+
+  <script  src="/kcenter_blog/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/kcenter_blog/js/mermaid-fix.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/kcenter_blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
